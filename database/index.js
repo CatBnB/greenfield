@@ -8,9 +8,11 @@ var connection = mysql.createConnection({
 });
 
 var selectAll = function(callback) {
+
 };
 
 var insertOne = function(data, callback) {
+  
 };
 
 module.exports.selectAll = selectAll;

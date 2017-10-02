@@ -1,10 +1,20 @@
 import React from 'react';
 
-const Mappinglist = (props) => (
-  <div>
-  	<div>this is the Mappinglist list</div>
-  </div>
-)
 
-export default Mappinglist
-;
+class Mappinglist extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+
+
+  render() {
+    return (
+      <div>
+        {this.props.text}
+      </div>
+    );
+  }
+}
+
+export default Mappinglist;

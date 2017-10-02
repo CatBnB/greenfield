@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import Map from './components/MapView.jsx';
 import Headerbar from './components/Headerbar.jsx';
 import Sitterlist from './components/Sitterlist.jsx';
 import Mappinglist from './components/Mappinglist.jsx';
@@ -17,10 +18,14 @@ class App extends React.Component {
     };
     this.navClick = this.navClick.bind(this);
   }
-  
+
   componentDidMount() {
     // this.getData();
   }
+
+  updateText() {
+    this.setState({text: 'clicked'});
+  };
 
   getData() {
     $.ajax({
@@ -61,7 +66,7 @@ class App extends React.Component {
           <Headerbar pageState={this.navClick} />
         </nav>
       </div>
-        { this.state.pageState === 'HomePage' ? 
+        { this.state.pageState === 'HomePage' ?
            (
             <div className = 'row'>
               <div className = 'col.md-6'>

@@ -3,8 +3,6 @@ var bodyParser = require('body-parser');
 // var database = require('../database/index.js');
 var app = express();
 app.use(bodyParser.json());
-var hi = __dirname + '/../client/dist'
-console.log('hi:', hi)
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 
@@ -22,6 +20,6 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 // })
 
 app.listen(3000, function() {
-  console.log('Server started and listening on port 3000!!!!!');
+  console.log('Server started and listening on port 3000');
 });
 

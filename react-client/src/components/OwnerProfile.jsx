@@ -9,7 +9,7 @@ class OwnerProfile extends React.Component {
       data: {}
     };
   }
-  
+
   componentDidMount() {
     // this.getData();
   }

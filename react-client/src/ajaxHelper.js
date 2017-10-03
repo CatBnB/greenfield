@@ -37,6 +37,8 @@ const patch = (endpoint, data, cb) => {
    .fail(err => console.log(err));
 };
 
-export default {get: get,
-                post: post,
-                patch: patch};
+export default {
+  get,
+  post,
+  patch
+};

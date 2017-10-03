@@ -10,7 +10,6 @@ class Map extends React.Component {
     this.updateMarkers = this.updateMarkers.bind(this);
   }
 
-
   componentDidMount() {
     var mapOptions = {
       center: new google.maps.LatLng(37.7837, -122.4089),
@@ -35,12 +34,9 @@ class Map extends React.Component {
       content: 'Hack Reactor here!'
     };
 
-    var context = this;
     var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-    google.maps.event.addListener(marker,'click',function(e){
-
+    google.maps.event.addListener(marker,'click', (e) => {
       infoWindow.open(this.state.map, marker);
-      context.props.updateText();
     });
   }
 

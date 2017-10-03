@@ -52,11 +52,8 @@ class App extends React.Component {
         { this.state.pageState === 'HomePage' ?
            (
             <div className = 'row'>
-              <div className = 'col.md-6'>
-                <Sitterlist />
-              </div>
               <div className = 'col-md-6'>
-                <Mappinglist />
+                <Map />
               </div>
             </div>
             )

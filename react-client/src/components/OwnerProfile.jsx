@@ -32,15 +32,20 @@ class OwnerProfile extends React.Component {
   render () {
     return (
       <form>
+        <h2> Owner Profile </h2>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">User Name</label>
-          <small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else.</small>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
+          <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="User Name"></input>
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else.</small>
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
+        </div >
+          <div className="form-group row">
+          <label htmlFor="exampleInputEmail1" className="col.sm-4">Address:</label>
+          <input type="text" className="form-control col.sm-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address"></input>
+          <input type="text" className="form-control col.sm-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Zip Code"></input>
         </div>
         <div className="form-group">
           <label htmlFor="exampleSelect1">How many cats you have:</label>
@@ -51,6 +56,14 @@ class OwnerProfile extends React.Component {
             <option>4</option>
             <option>5</option>
           </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="exampleTextarea">Feed:</label>
+          <textarea className="form-control" id="exampleTextarea" rows="1"></textarea>
+        </div>
+          <div className="form-group">
+          <label htmlFor="exampleTextarea">Medical::</label>
+          <textarea className="form-control" id="exampleTextarea" rows="1"></textarea>
         </div>
         <div className="form-group">
           <label htmlFor="exampleSelect2">Psesonality:</label>
@@ -66,35 +79,13 @@ class OwnerProfile extends React.Component {
           <textarea className="form-control" id="exampleTextarea" rows="3"></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleInputFile">File input</label>
+          <label htmlFor="exampleInputFile">Pictures input</label>
           <input type="file" className="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"></input>
-          <small id="fileHelp" className="form-text text-muted">This is some placeholder block-level help text for the above input. It is a bit lighter and easily wraps to a new line.</small>
         </div>
-        <fieldset className="form-group">
-          <legend>Radio buttons</legend>
-          <div className="form-check">
-            <label className="form-check-label">
-              <input type="radio" className="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked></input>
-              Option one is this and that&mdash;be sure to include why it is great
-            </label>
-          </div>
-          <div className="form-check">
-          <label className="form-check-label">
-              <input type="radio" className="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"></input>
-              Option two can be something else and selecting it will deselect option one
-            </label>
-          </div>
-          <div className="form-check disabled">
-          <label className="form-check-label">
-          <input type="radio" className="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled></input>
-              Option three is disabled
-            </label>
-          </div>
-        </fieldset>
         <div className="form-check">
           <label className="form-check-label">
             <input type="checkbox" className="form-check-input"></input>
-            Check me out
+            Accept to be a user
           </label>
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>

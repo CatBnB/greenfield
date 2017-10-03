@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import get from './ajaxHelper.js';
 import Map from './components/MapView.jsx';
 import Headerbar from './components/Headerbar.jsx';
-import Sitterlist from './components/Sitterlist.jsx';
-import Mappinglist from './components/Mappinglist.jsx';
 import Bottombar from './components/Bottombar.jsx';
 import OwnerProfile from './components/OwnerProfile.jsx';
 import SitterProfile from './components/SitterProfile.jsx';
@@ -28,18 +26,7 @@ class App extends React.Component {
   };
 
   getData() {
-    $.ajax({
-      url: '/catBnB', //
-      type: 'GET',
-      context: this,
-      contentType: "application/json",
-      success: function(data){
-        this.setState({data:data});
-      },
-      error: function(err){
-        console.log('err', err);
-      }
-    })
+    get('/catBnB', data => this.setState({data: data}));
   }
 
   navClick(data) {

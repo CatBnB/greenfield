@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+// url should be directed at a :user style endpoint
 const get = (endpoint, cb) => {
   $.ajax({
     type: 'GET',
@@ -23,6 +24,7 @@ const post = (endpoint, data, cb) => {
    .fail(err => console.log(err));
 };
 
+// url should be directed at a :user style endpoint
 const patch = (endpoint, data, cb) => {
   $.ajax({
     type: 'PATCH',

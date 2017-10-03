@@ -1,5 +1,5 @@
 import React from 'react';
-import SitterList from './components/Sitterlist.jsx';
+import SitterList from './SitterListView.jsx';
 
 class Map extends React.Component {
   constructor(props) {

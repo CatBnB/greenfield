@@ -21,10 +21,6 @@ class App extends React.Component {
     // this.getData();
   }
 
-  updateText() {
-    this.setState({text: 'clicked'});
-  };
-
   getData() {
     get('/catBnB', data => this.setState({data: data}));
   }

@@ -33,7 +33,7 @@ class OwnerProfile extends React.Component {
     return (
       <form>
         <h2> Owner Profile </h2>
-        <div className="form-group">
+        <div className="form-group onwer-profile">
           <label htmlFor="exampleInputEmail1">User Name</label>
           <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="User Name"></input>
         </div>

@@ -5,13 +5,18 @@ import Headerbar from './components/Headerbar.jsx';
 import Sitterlist from './components/Sitterlist.jsx';
 import Mappinglist from './components/Mappinglist.jsx';
 import Bottombar from './components/Bottombar.jsx';
+import OwnerProfile from './components/OwnerProfile.jsx';
+
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {}
+      data: {},
+      pageState: 'HomePage'
     };
+    this.navClick = this.navClick.bind(this);
   }
   
   componentDidMount() {
@@ -33,21 +38,43 @@ class App extends React.Component {
     })
   }
 
+  navClick(data) {
+    if(data === 'SignUp')
+    this.setState({
+      pageState: 'SignUp'
+    })
+    if(data === 'HomePage')
+    this.setState({
+      pageState: 'HomePage'
+    })
+    if(data === 'SignIn')
+    this.setState({
+      pageState: 'SignIn'
+    })
+  }
+
+
   render () {
     return (
     <div className = 'container'>
       <div className = ''>
-        <h1>CAT BnB</h1>
-        <Headerbar />
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <Headerbar pageState={this.navClick} />
+        </nav>
       </div>
-      <div className = 'row'>
-        <div className = 'col.md-6'>
-          <Sitterlist />
-        </div>
-        <div className = 'col-md-6'>
-          <Mappinglist />
-        </div>
-      </div>
+        { this.state.pageState === 'HomePage' ? 
+           (
+            <div className = 'row'>
+              <div className = 'col.md-6'>
+                <Sitterlist />
+              </div>
+              <div className = 'col-md-6'>
+                <Mappinglist />
+              </div>
+            </div>
+            )
+          : (<OwnerProfile />)
+        }
       <div className = '' >
         <Bottombar />
       </div>

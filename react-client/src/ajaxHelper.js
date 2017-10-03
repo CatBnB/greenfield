@@ -1,44 +1,53 @@
 import $ from 'jquery';
 
 // url should be directed at a :user style endpoint
-const get = (endpoint, cb) => {
-  $.ajax({
-    type: 'GET',
-    url: endpoint,
-    context: this,
-    dataType: 'json',
-  })
-   .done(data => cb(data))
-   .fail(err => console.log(err));
+export const get = (endpoint) => {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      type: 'GET',
+      url: endpoint,
+      context: this,
+      dataType: 'json',
+    })
+    .done(data => resolve(data))
+    .fail(err => reject(err));
+  });
 };
 
-const post = (endpoint, data, cb) => {
-  $.ajax({
-    type: 'POST',
-    url: endpoint,
-    context: this,
-    contentType: 'application/json',
-    data: data
-  })
-   .done(data => cb(data))
-   .fail(err => console.log(err));
+export const post = (endpoint, data) => {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      type: 'POST',
+      url: endpoint,
+      context: this,
+      contentType: 'application/json',
+      data: data
+    })
+    .done(data => resolve(data))
+    .fail(err => reject(err));
+  });
 };
 
 // url should be directed at a :user style endpoint
-const patch = (endpoint, data, cb) => {
-  $.ajax({
-    type: 'PATCH',
-    url: endpoint,
-    context: this,
-    contentType: 'application/json',
-    data: data
-  })
-   .done(data => cb(data))
-   .fail(err => console.log(err));
+export const patch = (endpoint, data) => {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      type: 'PATCH',
+      url: endpoint,
+      context: this,
+      contentType: 'application/json',
+      data: data
+    })
+    .done(data => resolve(data))
+    .fail(err => reject(err));
+  });
 };
 
-export default {
-  get,
-  post,
-  patch
-};
+export const validateInput = (data) => {
+  return new Promise(function(resolve, reject) {
+    for (var item in data) {
+      if (!item) reject('all fields must have data');
+    }
+    resolve(data);
+  });
+}

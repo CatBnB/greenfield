@@ -47,7 +47,7 @@ class App extends React.Component {
       <div>
         <Headerbar pageState={this.navClick} />
         <div className = 'container'>
-          { this.state.pageState === 'HomePage' ? 
+          { this.state.pageState === 'HomePage' ?
              (
               <div className = 'row'>
                 <div className = 'col-md-6'>

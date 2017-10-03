@@ -1,35 +1,35 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import {post, validateInput} from '../ajaxHelper.js';
 
 class OwnerProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {}
-    };
-  }
-  
-  componentDidMount() {
-    // this.getData();
+      username: null,
+      email: null,
+      address: null,
+      numOfCats: null,
+      feed: null,
+      medical: null,
+      personality: null,
+      accepted: null
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAddressChange = this.handleAddressChange.bind(this);
   }
 
-  getData() {
-    // $.ajax({
-    //   url: '/catBnB', //
-    //   type: 'GET',
-    //   context: this,
-    //   contentType: "application/json",
-    //   success: function(data){
-    //     this.setState({data:data});
-    //   },
-    //   error: function(err){
-    //     console.log('err', err);
-    //   }
-    // })
+  handleSubmit(e) {
+    validateInput(this.state).then(data => post('/owner', data))
+                             .catch(err => console.log(err));
+
   }
 
-  render () {
+  handleAddressChange(e) {
+    // this.setState({address: e.target.value});
+  }
+
+  render() {
     return (
       <form>
         <h2> Owner Profile </h2>
@@ -41,10 +41,10 @@ class OwnerProfile extends React.Component {
           <label htmlFor="exampleInputEmail1">Email address</label>
           <small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else.</small>
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
-        </div >
+        </div>
           <div className="form-group row">
           <label htmlFor="exampleInputEmail1" className="col.sm-4">Address:</label>
-          <input type="text" className="form-control col.sm-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address"></input>
+          <input onChange={this.handleAddressChange} type="text" className="form-control col.sm-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address"></input>
           <input type="text" className="form-control col.sm-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Zip Code"></input>
         </div>
         <div className="form-group">
@@ -88,7 +88,7 @@ class OwnerProfile extends React.Component {
             Accept to be a user
           </label>
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button onClick={this.handleSubmit} type="submit" className="btn btn-primary">Submit</button>
       </form>
     )
   }

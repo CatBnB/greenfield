@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var getCoordinatesFromInput = require('./geoHelper.js').getCoordinatesFromInput;
 // var database = require('../database/index.js');
 var app = express();
 app.use(bodyParser.json());
@@ -11,15 +12,23 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 
 //GET route
-// app.get('/', function(req, res) {
-// 	  res.status(200);
-// 	  res.();
-// })
-// //POST route
-// app.post('/', function(req, res) {
-// 	  res.status(201);
-// 	  res.send();
-// })
+app.get('/sitters', (req, res) => {
+  // var bound = req.params;
+  // db lookup sitters in bound
+  res.status(200);
+  res.send();
+});
+
+
+//POST route
+app.post('/owner', (req, res) => {
+  var {address} = req.body;
+  getCoordinatesFromInput(address).then(coords => req.body.coordinates = coords)
+                                  .then(/*TODO: write to database*/)
+                                  .then(results => res.send())
+                                  .catch(err => console.log(err));
+})
+
 
 
 app.listen(3000, function() {

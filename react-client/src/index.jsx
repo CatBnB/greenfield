@@ -6,8 +6,7 @@ import Sitterlist from './components/Sitterlist.jsx';
 import Mappinglist from './components/Mappinglist.jsx';
 import Bottombar from './components/Bottombar.jsx';
 import OwnerProfile from './components/OwnerProfile.jsx';
-
-
+import SitterProfile from './components/SitterProfile.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -73,7 +72,11 @@ class App extends React.Component {
               </div>
             </div>
             )
-          : (<OwnerProfile />)
+          : this.state.pageState === 'SignUp' ?
+            (
+              <OwnerProfile />
+            )
+            : <SitterProfile />
         }
       <div className = '' >
         <Bottombar />

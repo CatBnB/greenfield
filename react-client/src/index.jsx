@@ -7,6 +7,7 @@ import Bottombar from './components/Bottombar.jsx';
 import OwnerProfile from './components/OwnerProfile.jsx';
 import SitterProfile from './components/SitterProfile.jsx';
 import Login from './components/login.jsx';
+import SittersView from './components/SittersView.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // this.getData();
+    
   }
 
   getData() {
@@ -50,7 +51,10 @@ class App extends React.Component {
           { this.state.pageState === 'HomePage' ?
              (
               <div className = 'row'>
-                <div className = 'col-md-6'>
+                <div className = 'col-sm-6'>
+                  <SittersView />                    
+                </div>
+                <div className = 'col-sm-6'>
                   <Map />
                 </div>
               </div>
@@ -77,3 +81,7 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+
+
+

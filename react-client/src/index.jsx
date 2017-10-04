@@ -4,8 +4,8 @@ import get from './ajaxHelper.js';
 import Map from './components/MapView.jsx';
 import Headerbar from './components/Headerbar.jsx';
 import Bottombar from './components/Bottombar.jsx';
-import OwnerProfile from './components/OwnerProfile.jsx';
-import SitterProfile from './components/SitterProfile.jsx';
+import OwnerProfile from './components/OwnerProfileView.jsx';
+import SitterProfile from './components/SitterProfileView.jsx';
 import Login from './components/login.jsx';
 
 class App extends React.Component {

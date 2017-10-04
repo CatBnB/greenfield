@@ -1,6 +1,6 @@
 import React from 'react';
 import SitterEntry from './SitterEntryView.jsx'
-import SitterInfo from './SitterInfo.jsx'
+import SitterInfo from './SitterInfoView.jsx'
 
 class SitterList extends React.Component {
   constructor(props) {
@@ -30,8 +30,8 @@ class SitterList extends React.Component {
 					{
 						this.state.sitterClicked ?
 						(
-							<div onClick={this.changeView}>
-								<SitterInfo data={this.props.sitters[this.state.selected]}/>
+							<div>
+								<SitterInfo changeView={this.changeView} data={this.props.sitters[this.state.selected]}/>
 							</div>
 						)
 						//This part has to be in a map with a array of the users from the DB

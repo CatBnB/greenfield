@@ -31,7 +31,7 @@ class OwnerProfile extends React.Component {
 
   render() {
     return (
-      <form>
+      <form >
         <h2> Owner Profile </h2>
         <div className="form-group onwer-profile">
           <label htmlFor="exampleInputEmail1">User Name</label>
@@ -41,11 +41,21 @@ class OwnerProfile extends React.Component {
           <label htmlFor="exampleInputEmail1">Email address</label>
           <small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else.</small>
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
-        </div>
-          <div className="form-group row">
-          <label htmlFor="exampleInputEmail1" className="col.sm-4">Address:</label>
-          <input onChange={this.handleAddressChange} type="text" className="form-control col.sm-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address"></input>
-          <input type="text" className="form-control col.sm-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Zip Code"></input>
+        </div >
+        <div className='container'>
+          <div className='row'>
+            <div className="form-group">
+              <div className="col.sm-6">
+                <label htmlFor="exampleInputEmail1" >Address:</label>
+              </div>
+              <div className="col.sm-6">
+                <input type="text" onChange={this.handleAddressChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address"></input>
+              </div>
+              <div className="col.sm-6">
+                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Zip Code"></input>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="form-group">
           <label htmlFor="exampleSelect1">How many cats you have:</label>

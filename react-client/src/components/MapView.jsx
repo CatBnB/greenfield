@@ -1,12 +1,22 @@
 import React from 'react';
+import get from '../ajaxHelper.js';
 import SitterList from './SitterListView.jsx';
+import {sitters} from '../sampleData.js';
 
 class Map extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      sitters: null
+    }
 
     this.updateMarkers = this.updateMarkers.bind(this);
     this.initializeAutocomplete = this.initializeAutocomplete.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({sitters: sitters});
+    // get('/sitters').then(data => this.setState({sitters: data}));
   }
 
   componentDidMount() {
@@ -17,7 +27,7 @@ class Map extends React.Component {
     };
     var map = new google.maps.Map(this.mapContainer, mapOptions);
 
-    // this.updateMarkers(map);
+    this.updateMarkers(map);
     this.initializeAutocomplete(map);
   };
 
@@ -51,28 +61,34 @@ class Map extends React.Component {
   }
 
   updateMarkers(map) {
-    var markerOptions = {
-      position: new google.maps.LatLng(37.7837, -122.4089)
-    };
-    var marker = new google.maps.Marker(markerOptions);
-    marker.setMap(map);
+    this.state.sitters.forEach(sitter => {
+      var markerOptions = {
+        position: new google.maps.LatLng(sitter.coordinates[0], sitter.coordinates[1])
+      };
+      var marker = new google.maps.Marker(markerOptions);
+      marker.setMap(map);
 
-    var infoWindowOptions = {
-      content: 'Hack Reactor here!'
-    };
+      var infoWindowOptions = {
+        content: sitter.name
+      };
 
-    var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-    google.maps.event.addListener(marker,'click', (e) => {
-      infoWindow.open(map, marker);
-    });
+      var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+      google.maps.event.addListener(marker,'click', (e) => {
+        infoWindow.open(map, marker);
+      });
+    })
   }
 
   render() {
     return (
-      <div>
-        <SitterList />
-        <input type="text" id="autocomplete" ref={x => { this.autocomplete = x; }}></input>
-        <div id="map" ref={x => { this.mapContainer = x; }}></div>
+      <div className = 'row'>
+        <div className = 'col-sm-6'>
+          <SitterList sitters={this.state.sitters}/>
+        </div>
+        <div className = 'col-sm-6'>
+          <input type="text" id="autocomplete" ref={x => { this.autocomplete = x; }}></input>
+          <div id="map" ref={x => { this.mapContainer = x; }}></div>
+        </div>
       </div>
     );
   }

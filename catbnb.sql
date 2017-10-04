@@ -15,11 +15,11 @@ CREATE TABLE `sitterProfile` (
 	`price` INT NOT NULL,
 	`unit` TEXT NOT NULL,
 	`createdAt` DATE NOT NULL,
-	`phone` INT UNIQUE,
+	`phone` varchar(10) UNIQUE,
 	`email` TEXT(100),
 	`address` TEXT(500) NOT NULL,
-	`zipcode` INT NOT NULL,
-	PRIMARY KEY (`ID`)
+	`zipcode` varchar(5) NOT NULL,
+	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `ownerProfile` (
@@ -33,7 +33,7 @@ CREATE TABLE `ownerProfile` (
 	`other` TEXT(2000) NOT NULL,
 	`address` TEXT(2000) NOT NULL,
 	`createdAt` DATE NOT NULL,
-	`phone` INT UNIQUE,
+	`phone` varchar(10) UNIQUE,
 	`email` TEXT(100),
 	`zipcode` INT(20) NOT NULL,
 	PRIMARY KEY (`id`)

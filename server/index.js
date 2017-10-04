@@ -1,9 +1,16 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var getCoordinatesFromInput = require('./geoHelper.js').getCoordinatesFromInput;
+var dbUtil = require('../database/index.js');
 // var database = require('../database/index.js');
 var app = express();
+
+app.listen(3000, function() {
+  console.log('Server started and listening on port 3000!!!!!');
+});
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 var hi = __dirname + '/../client/dist'
 console.log('hi:', hi)
 app.use(express.static(__dirname + '/../react-client/dist'));
@@ -39,4 +46,16 @@ app.post('/sitter', (req, res) => {
 
 app.listen(3000, function() {
   console.log('Server started and listening on port 3000!!!!!');
+});
+app.get('/', function(req, res) {
+  res.status(200).send('ok');
+});
+// //POST route
+app.post('/owner/sendtask', function(req, res) {
+  console.log('SERVER',req.body);
+   var options = req.body;
+   dbUtil.createTask(options, function(result) {
+     console.log('post success');
+     res.status(201).send('ok');
+   })
 });

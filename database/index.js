@@ -32,9 +32,10 @@ var getOwnerDetail = function(owner_id,cb) {
 };
 
 var createTask = function(options, cb) {
-  var now = new Date().getTime();
-  var q = 'INSERT INTO tasksList(owner_id, ownerMessage, startDate, endDate, status, sitter_id,createdAt) VALUES (?,?,?,?,?,?)';
+  var now = new Date();
+  var q = 'INSERT INTO tasksList(owner_id, ownerMessage, startDate, endDate, status, sitter_id,createdAt) VALUES (?,?,?,?,?,?,?)';
   var values = [options.id, options.message, options.startDate, options.endDate,'sent', options.sitter_id, now];
+  console.log('DATABASE:',values);
   basicQuery(q, values, cb);
 };
 

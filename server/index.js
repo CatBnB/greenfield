@@ -34,13 +34,14 @@ app.post('/owner', (req, res) => {
 
 app.post('/sitter', (req, res) => {
   var {address} = req.body;
-  getCoordinatesFromInput(address).then(coords => {
-                                          req.body.altitude = coords[0];
-                                          req.body.longitude = coords[1];
-                                        })
-                                  .then(/*TODO: write to database*/)
-                                  .then(results => res.send())
-                                  .catch(err => console.log(err));
+  getCoordinatesFromInput(address)
+    .then(coords => {
+      req.body.altitude = coords[0];
+      req.body.longitude = coords[1];
+    })
+    .then(/*TODO: write to database*/)
+    .then(results => res.send())
+    .catch(err => console.log(err));
 })
 
 
@@ -52,10 +53,30 @@ app.get('/', function(req, res) {
 });
 // //POST route
 app.post('/owner/sendtask', function(req, res) {
-  console.log('SERVER',req.body);
-   var options = req.body;
-   dbUtil.createTask(options, function(result) {
-     console.log('post success');
-     res.status(201).send('ok');
-   })
+  var options = req.body;
+  dbUtil.createTask(options, function(result) {
+    res.status(201).send('ok');
+  })
+});
+
+
+app.post('/sitter/accepttask', function(req, res) {
+  var options = req.body;
+  dbUtil.acceptTask(options, function(result) {
+    res.status(201).send('accept');
+  })
+});
+
+app.post('/task/cancel', function(req, res) {
+  var options = req.body;
+  dbUtil.cancelTask(options.id, function(result) {
+    res.status(201).send('cancel');
+  })
+});
+
+app.post('/task/confirm', function(req, res) {
+  var options = req.body;
+  dbUtil.confirmTask(options.id, function(result) {
+    res.status(201).send('confirm');
+  })
 });

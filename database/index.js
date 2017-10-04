@@ -35,21 +35,22 @@ var createTask = function(options, cb) {
   var now = new Date();
   var q = 'INSERT INTO tasksList(owner_id, ownerMessage, startDate, endDate, status, sitter_id,createdAt) VALUES (?,?,?,?,?,?,?)';
   var values = [options.id, options.message, options.startDate, options.endDate,'sent', options.sitter_id, now];
-  console.log('DATABASE:',values);
   basicQuery(q, values, cb);
 };
 
 var acceptTask = function(options, cb) {
-  var now = new Date().getTime();
-  var q = 'UPDATE tasksList SET sitterMessage=?,status="accepted",finalPrice=?, acceptedAt=? WHERE id=?';
-  var values = [options.sitterMessage, options.finalPrice, now, options.id];//id is tasksList.id
-  basicQuery(q, null, cb);
+  var now = new Date()
+  var q = 'UPDATE tasksList SET sitterMessage=?,status=?,finalPrice=?,acceptedAt=? WHERE id=?';
+  var values = [options.sitterMessage, 'accepted', Number(options.finalPrice), now, Number(options.id)];//id is tasksList.id
+  console.log('DATABASE', values);
+  basicQuery(q, values, cb);
 };
 
 var cancelTask = function(task_id, cb) {
-  var now = new Date().getTime();
-  var q = 'UPDATE tasksList SET status="cancelled" cancelledAt=? WHERE id=?';
-  var values = [now,id];
+  console.log('DATABASE', task_id);
+  var now = new Date();
+  var q = 'UPDATE tasksList SET status="cancelled",cancelledAt=? WHERE id=?';
+  var values = [now,task_id];
   basicQuery(q, values, cb);
 };
 

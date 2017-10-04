@@ -9,7 +9,7 @@ class SitterProfile extends React.Component {
       data: {}
     };
   }
-  
+
   componentDidMount() {
     // this.getData();
   }
@@ -41,7 +41,7 @@ class SitterProfile extends React.Component {
           <label htmlFor="exampleInputEmail1">Email address</label>
           <small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else.</small>
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
-        </div >
+        </div>
           <div className="form-group row">
           <label htmlFor="exampleInputEmail1" className="col.sm-4">Address:</label>
           <input type="text" className="form-control col.sm-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address"></input>

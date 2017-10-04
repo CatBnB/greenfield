@@ -26,32 +26,77 @@ var ownerWithoutAdd={
   email: 'umihui86@gmail.com'
 };
 
-var sitters =[{
-  id: 1,
-  name: 'Feline Wishes and Caviar Dreams',
-  address: '600 Bryant St, San Fancisco, CA',
-  zipcode: 94107,
-  phone: '415-543-5365',
-  email: 'umihui86@gmail.com',
-  description: 'trustful,experienced cat boarding service, inclusively for cats',
-  boarding: true,
-  comeIn: false,
-  price: 40,
-  unit: 'day'
-},
-{
-  id: 2,
-  name: 'Julia Child',
-  address: '1100 clement st, San Fancisco, CA',
-  zipcode: 94121,
-  phone: '415-213-8743',
-  email: 'umihui86@gmail.com',
-  description: 'animal lovers, have two cats in home, enjoy taking care of cats',
-  boarding: false,
-  comeIn: true,
-  price: 30,
-  unit: 'visit'
-}];
+export const sitters =[{
+    id: 1,
+    name: 'Feline Wishes and Caviar Dreams',
+    address: '600 Bryant St, San Fancisco, CA',
+    zipcode: 94107,
+    phone: '415-543-5365',
+    email: 'umihui86@gmail.com',
+    description: 'trustful,experienced cat boarding service, inclusively for cats',
+    boarding: true,
+    comeIn: false,
+    price: 40,
+    unit: 'day',
+    coordinates: [37.783176, -122.410854]
+  },
+  {
+    id: 2,
+    name: 'Andrew London',
+    address: '1100 clement st, San Fancisco, CA',
+    zipcode: 94121,
+    phone: '415-213-8743',
+    email: 'umihui86@gmail.com',
+    description: 'animal lovers, have two cats in home, enjoy taking care of cats',
+    boarding: false,
+    comeIn: true,
+    price: 30,
+    unit: 'visit',
+    coordinates: [37.784923, -122.412517]
+  },
+  {
+    id: 3,
+    name: 'Julia Child',
+    address: '1100 clement st, San Fancisco, CA',
+    zipcode: 94121,
+    phone: '415-213-8743',
+    email: 'umihui86@gmail.com',
+    description: 'animal lovers, have two cats in home, enjoy taking care of cats',
+    boarding: false,
+    comeIn: true,
+    price: 30,
+    unit: 'visit',
+    coordinates: [37.783252, -122.405951]
+  },
+  {
+    id: 4,
+    name: 'Tom Cruise',
+    address: '1100 clement st, San Fancisco, CA',
+    zipcode: 94121,
+    phone: '415-213-8743',
+    email: 'umihui86@gmail.com',
+    description: 'animal lovers, have two cats in home, enjoy taking care of cats',
+    boarding: false,
+    comeIn: true,
+    price: 30,
+    unit: 'visit',
+    coordinates: [37.781319, -122.409148]
+  },
+  {
+    id: 5,
+    name: 'Umi Hui',
+    address: '1100 clement st, San Fancisco, CA',
+    zipcode: 94121,
+    phone: '415-213-8743',
+    email: 'umihui86@gmail.com',
+    description: 'animal lovers, have two cats in home, enjoy taking care of cats',
+    boarding: false,
+    comeIn: true,
+    price: 30,
+    unit: 'visit',
+    coordinates: [37.784126, -122.408225]
+  }
+];
 
 var sitterReviews = [
 {

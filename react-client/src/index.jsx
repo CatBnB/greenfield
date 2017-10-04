@@ -4,10 +4,9 @@ import get from './ajaxHelper.js';
 import Map from './components/MapView.jsx';
 import Headerbar from './components/Headerbar.jsx';
 import Bottombar from './components/Bottombar.jsx';
-import OwnerProfile from './components/OwnerProfile.jsx';
-import SitterProfile from './components/SitterProfile.jsx';
+import OwnerProfile from './components/OwnerProfileView.jsx';
+import SitterProfile from './components/SitterProfileView.jsx';
 import Login from './components/login.jsx';
-import SittersView from './components/SittersView.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -49,16 +48,7 @@ class App extends React.Component {
         <Headerbar pageState={this.navClick} />
         <div className = 'container'>
           { this.state.pageState === 'HomePage' ?
-             (
-              <div className = 'row'>
-                <div className = 'col-sm-6'>
-                  <SittersView />                    
-                </div>
-                <div className = 'col-sm-6'>
-                  <Map />
-                </div>
-              </div>
-              )
+            <Map />
             : this.state.pageState === 'SignUp' ?
               (
                 <div>
@@ -81,7 +71,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-
-
-

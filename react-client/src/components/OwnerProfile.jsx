@@ -43,15 +43,15 @@ class OwnerProfile extends React.Component {
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
         </div >
         <div className='container'>
-          <div className='row'>
-            <div className="form-group">
-              <div className="col.sm-6">
+          <div className="form-group form-inline">
+           <div className='row'>
+              <div className="col.sm-2">
                 <label htmlFor="exampleInputEmail1" >Address:</label>
               </div>
               <div className="col.sm-6">
                 <input type="text" onChange={this.handleAddressChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address"></input>
               </div>
-              <div className="col.sm-6">
+              <div className="col.sm-4">
                 <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Zip Code"></input>
               </div>
             </div>

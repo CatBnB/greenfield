@@ -38,3 +38,22 @@
   margin: 2px;
   background-color: #fff;
 }
+
+.sitter-info-inbox {
+  font-size: 16px;
+  padding: 20px;
+  margin: 15px;
+  background-color: white;
+}
+
+.sitter-info-name {
+	padding: 20px;
+}
+
+.sitter-info-description{
+	padding: 10px;
+}
+
+.sitter-info-description small{
+	padding: 20px;
+}

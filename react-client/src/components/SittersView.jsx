@@ -28,17 +28,17 @@ class SittersView extends React.Component {
 	render () {
 	  return (
 			<div className="container">
-				<div className="sitter-view-box">
+				<div >
 					{	
 						this.state.isSitterClicked ?
 						(
-							<div onClick={this.sitterVierClick.bind(this,'SITTER INFORMATION')}>
+							<div  >
 								<SitterInfo />
 							</div>
 						)
 						//This part has to be in a map with a array of the users from the DB
 						: (
-							<div onClick={this.sitterVierClick.bind(this,'SITTER INFORMATION')}>
+							<div className="sitter-view-box" onClick={this.sitterVierClick.bind(this,'SITTER INFORMATION')}>
 								<SitterEntryView />
 								<SitterEntryView />
 								<SitterEntryView />

@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+var geoHelper = require('../server/geoHelper');
 
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -22,9 +23,9 @@ var basicQuery = function(query, values, cb) {
 
 
 var getSitterDetail = function(id, cb) {
-  //var q = 'SELECT * FROM sitterProfile JOIN Reviews ON sitterProfile.id = Reviews.sitter_id WHERE sitter_id =' + id;
   var qForSitter = 'SELECT * FROM sitterProfile WHERE id =' + id;
   var qForReview = 'SELECT review FROM Reviews WHERE sitter_id =' + id;
+
   connection.query(qForSitter, function(err, sitter) {
     if (err) {
       throw err;
@@ -32,9 +33,8 @@ var getSitterDetail = function(id, cb) {
       connection.query(qForReview, function(err, result) {
         if (err) {
           throw err;
-        } else{
+        } else {
           sitter[0].reviews = result;
-          console.log('review',sitter[0]);
           cb(sitter[0]);
         }
       })

@@ -32,6 +32,10 @@ app.post('/sitter', (req, res) => {
     .catch(err => console.log(err));
 })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> add package
 app.get('/', function(req, res) {
   res.status(200).send('ok');
 });

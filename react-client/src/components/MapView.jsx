@@ -81,8 +81,8 @@ class Map extends React.Component {
 
   render() {
     return (
-      <div className = 'row'>
-        <div className = 'col-sm-6'>
+      <div className = 'row homepage-map-box' >
+        <div className = 'col-sm-6 homepage-map-inbox'>
           <SitterList sitters={this.state.sitters}/>
         </div>
         <div className = 'col-sm-6'>

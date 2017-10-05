@@ -25,28 +25,24 @@ class SitterList extends React.Component {
 
 	render () {
 	  return (
-			<div className="container">
-				<div className="sitter-view-box">
-					{
-						this.state.sitterClicked ?
-						(
-							<div>
-								<SitterInfo changeView={this.changeView} data={this.props.sitters[this.state.selected]}/>
-							</div>
-						)
-						//This part has to be in a map with a array of the users from the DB
-						: (
-							<div>
-                {this.props.sitters.map((sitter, index) =>
-                  <SitterEntry key={index} index={index} sitter={sitter} toggleView={this.toggleView} />)}
-							</div>
-						)
-					}
-				</div>
+			<div className="container sitter-view-box ">
+				{
+					this.state.sitterClicked ?
+					(
+						<div>
+							<SitterInfo changeView={this.changeView} data={this.props.sitters[this.state.selected]}/>
+						</div>
+					)
+					: (
+						<div>
+              {this.props.sitters.map((sitter, index) =>
+                <SitterEntry key={index} index={index} sitter={sitter} toggleView={this.toggleView} />)}
+						</div>
+					)
+				}
 			</div>
     )
   }
-
 }
 
 export default SitterList;

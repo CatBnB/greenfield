@@ -8,7 +8,7 @@ const Bottombar = (props) => (
 			  <div className="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul className="navbar-nav mr-auto">
 			      <li className="nav-item">
-			        <div className="nav-link" onClick={props.pageState.bind(null,'SignIn')} >Sitter Sign-Up</div>
+			        <div className="nav-link" onClick={props.pageState} >Sitter Sign-Up</div>
 			      </li>
 			      <li className="nav-item">
 			        <div className="nav-link">Sitter Sign-In</div>

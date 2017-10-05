@@ -1,4 +1,5 @@
 import React from 'react';
+import post from '../ajaxHelper.js';
 // import DatePicker from 'DatePicker'
 
 class SendRequest extends React.Component {
@@ -8,8 +9,6 @@ class SendRequest extends React.Component {
       startDate: new Date(),
     };
   }
-
-
 
   render() {
     return (

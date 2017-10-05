@@ -2,47 +2,19 @@ import React from 'react';
 import SitterEntry from './SitterEntryView.jsx'
 import SitterInfo from './SitterInfoView.jsx'
 
-class SitterList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sitterClicked: false,
-      selected: null
-    };
-    this.changeView = this.changeView.bind(this);
-    this.toggleView = this.toggleView.bind(this);
-  }
-
-  toggleView(index) {
-    this.setState({selected: index}, () => {
-      this.setState({sitterClicked: !this.state.sitterClicked});
-    })
-  }
-
-  changeView() {
-    this.setState({sitterClicked: !this.state.sitterClicked});
-  }
-
-	render () {
-	  return (
-			<div className="container sitter-view-box ">
-				{
-					this.state.sitterClicked ?
-					(
-						<div>
-							<SitterInfo changeView={this.changeView} data={this.props.sitters[this.state.selected]}/>
-						</div>
-					)
-					: (
-						<div>
-              {this.props.sitters.map((sitter, index) =>
-                <SitterEntry key={index} index={index} sitter={sitter} toggleView={this.toggleView} />)}
-						</div>
-					)
-				}
-			</div>
-    )
-  }
-}
+const SitterList = (props) => (
+  <div className="container">
+    <div className="sitter-view-box">
+      { props.sitterClicked ?
+        (<div>
+          <SitterInfo changeView={props.changeView} data={props.sitters[props.selected]}/>
+         </div>)
+      : (<div>
+          {props.sitters.map((sitter, index) =>
+            <SitterEntry key={index} index={index} sitter={sitter} toggleView={props.toggleView} />)}
+        </div>) }
+    </div>
+  </div>
+);
 
 export default SitterList;

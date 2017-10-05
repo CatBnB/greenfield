@@ -7,6 +7,7 @@ class Login extends React.Component {
   }
 
   componentWillMount(){
+    var context = this;
     window.fbAsyncInit = function() {
       FB.init({
         appId            : '273686389806415',
@@ -19,7 +20,7 @@ class Login extends React.Component {
         if(response.status === 'connected'){
           console.log('connected');
           console.log(response);
-
+          context.props.initAuth(response);
           FB.api('/me', function(response){
             console.log(response.name + " " + response.email, response.id);
           })
@@ -35,7 +36,7 @@ class Login extends React.Component {
       }, true)
         FB.AppEvents.logPageView();
     };
-    
+
     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {return;}

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Login from './LoginView.jsx';
 
 const Headerbar = (props) => (
 	<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -11,7 +11,7 @@ const Headerbar = (props) => (
 		        <div className="nav-link" onClick={props.pageState.bind(null,'SignUp')} >Sign-Up</div>
 		      </li>
 		      <li className="nav-item">
-		        <div className="nav-link" >Sign-In</div>
+		        <Login initAuth={props.initAuth} />
 		      </li>
 		    </ul>
 		    <form className="form-inline my-2 my-lg-0">

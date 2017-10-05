@@ -5,42 +5,51 @@ class OwnerProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: null,
-      email: null,
-      address: null,
+      name: null,
       numOfCats: null,
-      feed: null,
+      food: null,
       medical: null,
       personality: null,
-      accepted: null
+      other: null,
+      address: null,
+      zipcode: null,
+      phone: null,
+      email: null
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     validateInput(this.state).then(data => post('/owner', data))
                              .catch(err => console.log(err));
-
   }
 
-  handleAddressChange(e) {
-    // this.setState({address: e.target.value});
+  handleChange(e) {
+    console.log(e.target.id);
+    var update = {};
+    update[e.target.id] = e.target.value;
+    this.setState(update);
   }
 
   render() {
     return (
-      <form >
+      <form onChange={this.handleChange}>
         <h2> Owner Profile </h2>
-        <div className="form-group onwer-profile">
+        <div className="form-group">
           <label htmlFor="exampleInputEmail1">User Name</label>
-          <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="User Name"></input>
+          <input id="name" type="text" className="form-control" placeholder="User Name"></input>
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
-          <small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else.</small>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
+          <small className="form-text text-muted">We will never share your email with anyone else.</small>
+          <input id="email" type="text" className="form-control" placeholder="Enter email"></input>
+        </div>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">Phone</label>
+          <input id="phone" type="text" className="form-control" placeholder="Enter phone number"></input>
         </div>
         <div className='container'>
           <div className="form-group form-inline">
@@ -49,17 +58,17 @@ class OwnerProfile extends React.Component {
                 <label htmlFor="exampleInputEmail1" >Address:</label>
               </div>
               <div className="col.sm-6">
-                <input type="text" onChange={this.handleAddressChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address"></input>
+                <input id="address" type="text" className="form-control" placeholder="Address"></input>
               </div>
               <div className="col.sm-4">
-                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Zip Code"></input>
+                <input id="zipcode" type="text" className="form-control" placeholder="Zip Code"></input>
               </div>
             </div>
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="exampleSelect1">How many cats you have:</label>
-          <select className="form-control" id="exampleSelect1">
+          <select id="numOfCats" className="form-control">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -69,15 +78,15 @@ class OwnerProfile extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="exampleTextarea">Feed:</label>
-          <textarea className="form-control" id="exampleTextarea" rows="1"></textarea>
+          <textarea id="food" className="form-control" rows="1"></textarea>
         </div>
           <div className="form-group">
           <label htmlFor="exampleTextarea">Medical::</label>
-          <textarea className="form-control" id="exampleTextarea" rows="1"></textarea>
+          <textarea id="medical" className="form-control" rows="1"></textarea>
         </div>
         <div className="form-group">
           <label htmlFor="exampleSelect2">Psesonality:</label>
-          <select className="form-control" id="exampleSelect2">
+          <select id="personality" className="form-control">
             <option>Grumpy</option>
             <option>Quiet</option>
             <option>Social</option>
@@ -86,11 +95,11 @@ class OwnerProfile extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="exampleTextarea">Other:</label>
-          <textarea className="form-control" id="exampleTextarea" rows="3"></textarea>
+          <textarea id="other" className="form-control" rows="3"></textarea>
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputFile">Pictures input</label>
-          <input type="file" className="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"></input>
+          <input type="file" className="form-control-file"></input>
         </div>
         <div className="form-check">
           <label className="form-check-label">

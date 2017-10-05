@@ -22,13 +22,19 @@ app.get('/sitters', (req, res) => {
 
 //POST route
 app.post('/owner', (req, res) => {
+  /*TODO: write to database*/
+})
+
+app.post('/sitter', (req, res) => {
   var {address} = req.body;
-  getCoordinatesFromInput(address).then(coords => req.body.coordinates = coords)
+  getCoordinatesFromInput(address).then(coords => {
+                                          req.body.altitude = coords[0];
+                                          req.body.longitude = coords[1];
+                                        })
                                   .then(/*TODO: write to database*/)
                                   .then(results => res.send())
                                   .catch(err => console.log(err));
 })
-
 
 
 app.listen(3000, function() {

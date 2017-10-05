@@ -22,8 +22,24 @@ var basicQuery = function(query, values, cb) {
 
 
 var getSitterDetail = function(id, cb) {
-  var q = 'SELECT * FROM sitterProfile JOIN Reviews ON sitterProfile.id = Reviews.sitter_id WHERE id = ' + id;
-  basicQuery(q, null, cb);      //result should be an arr of obj
+  //var q = 'SELECT * FROM sitterProfile JOIN Reviews ON sitterProfile.id = Reviews.sitter_id WHERE sitter_id =' + id;
+  var qForSitter = 'SELECT * FROM sitterProfile WHERE id =' + id;
+  var qForReview = 'SELECT review FROM Reviews WHERE sitter_id =' + id;
+  connection.query(qForSitter, function(err, sitter) {
+    if (err) {
+      throw err;
+    } else{
+      connection.query(qForReview, function(err, result) {
+        if (err) {
+          throw err;
+        } else{
+          sitter[0].reviews = result;
+          console.log('review',sitter[0]);
+          cb(sitter[0]);
+        }
+      })
+    }
+  })
 };
 
 var getOwnerDetail = function(owner_id,cb) {

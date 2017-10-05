@@ -19,17 +19,12 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 
 //GET route
-app.get('/sitters', (req, res) => {
-  // var bound = req.params;
-  // db lookup sitters in bound
-  res.status(200);
-  res.send();
-});
-
-
-//POST route
-app.post('/owner', (req, res) => {
-  /*TODO: write to database*/
+app.get('/owner/sitterdetail/:id', function(req, res) {
+  var id = req.params.id;
+  console.log('SERVER',id);
+  dbUtil.getSitterDetail(id, function(result) {
+    res.send(result);
+  })
 })
 
 app.post('/sitter', (req, res) => {

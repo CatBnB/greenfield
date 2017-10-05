@@ -1,11 +1,11 @@
 import React from 'react';
-// import DatePicker from 'react-date-picker';
+// import DatePicker from 'DatePicker'
 
 class SendRequest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
+      startDate: new Date(),
     };
   }
 
@@ -33,13 +33,30 @@ class SendRequest extends React.Component {
                     Rate: $50/hour
                   </h5>
                 </div>
-                <div className="sitter-info-description">
-                  <h5>
-                    Description:
-                  </h5>
-                  <small>I am a cat lover!!</small>
+                <div className="row sitter-request-data">
+                  <div className="col-lg-5">
+                    <div>
+                      Date:
+                    </div>
+                    <small>(requertment)</small>
+                  </div>
+                  <div className="col-lg-2">
+                    <div className='sitter-request-data-inline'>
+                      StartDate:
+                    </div>
+                    <div className='sitter-request-data-inline'>
+                      EndDate:
+                    </div>
+                  </div>
+                  <div className="col-lg-5">
+                    <div className='sitter-request-data-inline'>
+                      <input type='date' id='date'></input>
+                    </div>
+                    <div className='sitter-request-data-inline'>
+                      <input type='date' id='date'></input>
+                    </div>
+                  </div>
                 </div>
-
                 <form>
                   <div className="form-group">
                     <label htmlFor="message-text" className="form-control-label">Request Detail Message:</label>

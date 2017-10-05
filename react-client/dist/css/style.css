@@ -29,11 +29,10 @@
 
 .sitter-info { 
 	width: 100%;
-	height: 500px;
+	height: 600px;
 }
 
 .sitter-view-inbox {
-
   padding: 6px;
 }
 
@@ -43,6 +42,10 @@
 }
 
 .sitter-view-box {
+	width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 600px;
   font-size: 16px;
   padding: 8px;
   border: 2px;
@@ -58,10 +61,31 @@
 	padding: 20px;
 }
 
-.sitter-info-description{
-	padding: 10px;
+.sitter-request-data {
+	padding: 5px;
 }
 
-.sitter-info-description small{
+.sitter-request-data-inline {
+	padding: 2px;
+}
+
+.sitter-info-picture {
 	padding: 20px;
 }
+
+.sitter-info-reviewbox {
+	width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 250px;
+  padding: 6px;
+	background-color: #eee;
+}
+
+.sitter-info-review-inbox {
+	padding: 3px;
+	border-style: groove;
+	background-color: #fff;
+}
+
+

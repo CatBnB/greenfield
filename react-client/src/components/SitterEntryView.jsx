@@ -20,7 +20,8 @@ class SitterEntry extends React.Component {
         <div className="media-body">
           <div className="sitter-view-title">{this.props.sitter.name}</div>
           <div className="sitter-view-detail">{this.props.sitter.description}</div>
-          <div>${this.props.sitter.price}</div>
+          <div>Fee: ${this.props.sitter.price} / Day</div>
+          <div>Reviews: 3 Rates: 10/10</div>
         </div>
       </div>
     );

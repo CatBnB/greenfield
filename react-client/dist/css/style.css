@@ -21,29 +21,37 @@
   padding-left: 20px;
 }
 
-.sitter-view-box {
+.homepage-map-box {
   font-size: 16px;
   padding: 8px;
   background-color: #eee;
 }
 
-.sitter-view-inbox {
-  font-size: 16px;
-  padding: 8px;
-  margin: 2px;
-  background-color: #fff;
+.sitter-info { 
+	width: 100%;
+	height: 500px;
 }
 
-.sitter-view-box :hover {
+.sitter-view-inbox {
+
+  padding: 6px;
+}
+
+.sitter-view-inbox :hover {
   background-color: #eec;
   cursor: pointer;
 }
 
-.sitter-info-inbox {
+.sitter-view-box {
   font-size: 16px;
-  padding: 20px;
-  margin: 15px;
-  background-color: white;
+  padding: 8px;
+  border: 2px;
+  background-color: #fff;
+}
+
+.homepage-map-inbox {
+	padding: 2px;
+	background-color: #ddd
 }
 
 .sitter-info-name {

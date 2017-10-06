@@ -45,17 +45,7 @@ app.post('/sitter', (req, res) => {
     .catch(err => console.log(err));
 })
 
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
->>>>>>> add package
-app.get('/', function(req, res) {
-  res.status(200).send('ok');
-});
-=======
->>>>>>> add 'get dashboard' function in server
-// //POST route
 app.post('/owner/sendtask', function(req, res) {
   var options = req.body;
   dbUtil.createTask(options, function(result) {

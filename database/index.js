@@ -42,6 +42,28 @@ var getSitterDetail = function(id, cb) {
   })
 };
 
+var insertOwnerProfile = function(options, cb) {
+  var now = new Date();
+  var q = 'INSERT INTO ownerProfile values (null,?,?,?,?,?,?,?,?,?,?,?,?)';
+  var values = [options.fb_userId,options.name,options.numOfCats,options.food,options.medical,
+                options.personality,options.other,options.address,now,options.phone,
+                options.email,options.zipcode];
+  basicQuery(q, values, cb);
+}
+
+var insertSitterProfile = function(options, cb) {
+  var now = new Date();
+  var q = 'INSERT INTO sitterProfile values (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+  var values = [options.fb_userId,options.name,options.photo,options.description,
+                options.comeIn,options.boarding,options.price,options.unit,now,
+                options.phone,options.email,options.address,options.zipcode,options.latitude,options.longitude];
+  basicQuery(q, values, cb);
+}
+
+var updateOwnerProfile = function(fb_userId,cd) {
+  //when owner want to change profile
+}
+
 var getOwnerDetail = function(owner_id,cb) {
   var q = 'SELECT * FROM ownerProfile WHERE id = ' + owner_id;
   basicQuery(q, null, cb);
@@ -93,5 +115,6 @@ module.exports = {
   cancelTask,
   confirmTask,
   getOwnerDashboard,
-  getSitterDashboard
+  getSitterDashboard,
+  insertOwnerProfile
 };

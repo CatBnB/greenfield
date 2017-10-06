@@ -14,55 +14,74 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 //GET route
 app.get('/owner/sitterdetail/:id', function(req, res) {
   var id = req.params.id;
-  console.log('SERVER',id);
-  dbUtil.getSitterDetail(id, function(result) {
-    res.send(result);
-  })
+  dbUtil.getSitterDetail(id)
+    .then((result) => {
+      res.send(result);
+    })
+})
+
+app.get('/owner/dashboard/:id', function(req, res) {
+  var id = req.params.id;
+  dbUtil.getOwnerDashboard(id)
+  .then((result) =>
+    res.send(result[0])
+  );
+})
+
+app.get('/sitter/dashboard/:id', function(req, res) {
+  var id = req.params.id;
+  dbUtil.getSitterDashboard(id)
+  .then((result) =>
+    res.send(result[0])
+  );
 })
 
 app.post('/sitter', (req, res) => {
-  var {address} = req.body;
+  var address = req.body.address;
   getCoordinatesFromInput(address)
     .then(coords => {
-      req.body.altitude = coords[0];
+      req.body.latitude = coords[0];
       req.body.longitude = coords[1];
     })
-    .then(/*TODO: write to database*/)
+    .then((result) => {
+      dbUtil.insertSitterProfile(req.body)
+    })
     .then(results => res.send())
     .catch(err => console.log(err));
 })
 
-app.get('/', function(req, res) {
-  res.status(200).send('ok');
-});
-// //POST route
+
 app.post('/owner/sendtask', function(req, res) {
   var options = req.body;
-  dbUtil.createTask(options, function(result) {
+  dbUtil.createTask(options)
+    .then((result) => {
     res.status(201).send('ok');
-  })
+  });
 });
 
 
 app.post('/sitter/accepttask', function(req, res) {
   var options = req.body;
-  dbUtil.acceptTask(options, function(result) {
+  dbUtil.acceptTask(options)
+    .then((result) => {
     res.status(201).send('accept');
-  })
+  });
 });
 
 app.post('/task/cancel', function(req, res) {
   var options = req.body;
-  dbUtil.cancelTask(options.id, function(result) {
+  dbUtil.cancelTask(options.id)
+    .then((result) => {
     res.status(201).send('cancel');
   })
 });
 
 app.post('/task/confirm', function(req, res) {
   var options = req.body;
-  dbUtil.confirmTask(options.id, function(result) {
+  dbUtil.confirmTask(options.id)
+    .then((result) => {
     res.status(201).send('confirm');
-  })
+  });
 });
 
 app.listen(3000, function() {

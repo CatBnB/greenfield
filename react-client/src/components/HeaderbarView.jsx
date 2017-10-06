@@ -10,8 +10,6 @@ class Headerbar extends React.Component {
   }
 
   componentWillUpdate() {
-    // google.maps.event.addListenerOnce(this.props.map, 'idle', function(){
-    // });
     this.initializeAutocomplete(this.props.map);
   }
 
@@ -34,7 +32,7 @@ class Headerbar extends React.Component {
         map.fitBounds(place.geometry.viewport);
       } else {
         map.setCenter(place.geometry.location);
-        map.setZoom(10);
+        map.setZoom(8);
       }
       marker.setPosition(place.geometry.location);
       infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');

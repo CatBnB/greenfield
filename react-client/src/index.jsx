@@ -11,7 +11,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
       pageState: 'HomePage',
       auth: null,
       map: null
@@ -28,10 +27,6 @@ class App extends React.Component {
 
   setMap(map) {
     this.setState({map: map});
-  }
-
-  getData() {
-    get('/catBnB', data => this.setState({data: data}));
   }
 
   navClick(data) {

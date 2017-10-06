@@ -24,8 +24,8 @@ class Map extends React.Component {
 
   componentWillMount() {
     // using sample data
-    this.setState({sitters: sitters});
-    // get('/sitters').then(data => this.setState({sitters: data}));
+    // this.setState({sitters: sitters});
+    get('/sitter/:sitterID').then(data => this.setState({sitters: data}));
   }
 
   componentDidMount() {

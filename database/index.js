@@ -9,28 +9,6 @@ db.configure({
 	"database": "catbnb"
 });
 
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'catbnb'
-});
-
-connection.connect();
-
-
-var basicQuery = function(query, values, cb) {
-  connection.query(query, values, function(err, result) {
-    if (err) {
-      throw err;
-    } else{
-      cb(result);
-    }
-  })
-};
-
-
-
 var getSitterDetail = function(id) {
   var qForSitter = 'SELECT * FROM sitterProfile WHERE id =' + id;
   var qForReview = 'SELECT review FROM Reviews WHERE sitter_id =' + id;
@@ -53,7 +31,7 @@ var insertOwnerProfile = function(options, cb) {
   var values = [options.fb_userId,options.name,options.numOfCats,options.food,options.medical,
                 options.personality,options.other,options.address,now,options.phone,
                 options.email,options.zipcode];
-  basicQuery(q, values, cb);
+  return db.query(q, values);
 };
 
 var insertSitterProfile = function(options, cb) {
@@ -69,47 +47,46 @@ var updateOwnerProfile = function(fb_userId,cd) {
   //when owner want to change profile
 };
 
-var getOwnerDetail = function(owner_id,cb) {
+//not finished
+var getOwnerDetail = function(owner_id) {
   var q = 'SELECT * FROM ownerProfile WHERE id = ' + owner_id;
-  basicQuery(q, null, cb);
+  return db.query(q);
 };
 
-var createTask = function(options, cb) {
+var createTask = function(options) {
   var now = new Date();
   var q = 'INSERT INTO tasksList(owner_id, ownerMessage, startDate, endDate, status, sitter_id,createdAt) VALUES (?,?,?,?,?,?,?)';
   var values = [options.id, options.message, options.startDate, options.endDate,'sent', options.sitter_id, now];
-  basicQuery(q, values, cb);
+  return db.query(q, values);
 };
 
-var acceptTask = function(options, cb) {
+var acceptTask = function(options) {
   var now = new Date()
   var q = 'UPDATE tasksList SET sitterMessage=?,status=?,finalPrice=?,acceptedAt=? WHERE id=?';
   var values = [options.sitterMessage, 'accepted', Number(options.finalPrice), now, Number(options.id)];//id is tasksList.id
-  console.log('DATABASE', values);
-  basicQuery(q, values, cb);
+  return db.query(q, values);
 };
 
-var cancelTask = function(task_id, cb) {
-  console.log('DATABASE', task_id);
+var cancelTask = function(task_id) {
   var now = new Date();
   var q = 'UPDATE tasksList SET status="cancelled",cancelledAt=? WHERE id=?';
   var values = [now,task_id];
-  basicQuery(q, values, cb);
+  return db.query(q, values);
 };
 
-var confirmTask = function(id, cb) {
+var confirmTask = function(id) {
   var q = 'UPDATE tasksList SET status="confirmed" WHERE id=' + id;
-  basicQuery(q, null, cb);
+  return db.query(q);
 };
 
-var getOwnerDashboard = function(id,cb) {
+var getOwnerDashboard = function(id) {
   var q = 'SELECT sitterProfile.name, status FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
-  basicQuery(q, null, cb);
+  return db.query(q);
 };
 
-var getSitterDashboard = function(id,cb) {
+var getSitterDashboard = function(id) {
   var q = 'SELECT ownerProfile.name, status FROM tasksList JOIN ownerProfile ON ownerProfile.id = tasksList.owner_id WHERE sitter_id=' + id;
-  basicQuery(q, null, cb);
+  return db.query(q);
 };
 
 module.exports = {

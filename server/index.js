@@ -14,9 +14,6 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 //GET route
 app.get('/owner/sitterdetail/:id', function(req, res) {
   var id = req.params.id;
-  // dbUtil.getSitterDetail(id, function(result) {
-  //   res.send(result);
-  // });
   dbUtil.getSitterDetail(id)
     .then((result) => {
       res.send(result);
@@ -25,16 +22,18 @@ app.get('/owner/sitterdetail/:id', function(req, res) {
 
 app.get('/owner/dashboard/:id', function(req, res) {
   var id = req.params.id;
-  dbUtil.getOwnerDashboard(id, function(result) {
-    res.send(result);
-  })
+  dbUtil.getOwnerDashboard(id)
+  .then((result) =>
+    res.send(result[0])
+  );
 })
 
 app.get('/sitter/dashboard/:id', function(req, res) {
   var id = req.params.id;
-  dbUtil.getSitterDashboard(id, function(result) {
-    res.send(result);
-  })
+  dbUtil.getSitterDashboard(id)
+  .then((result) =>
+    res.send(result[0])
+  );
 })
 
 app.post('/sitter', (req, res) => {
@@ -54,31 +53,35 @@ app.post('/sitter', (req, res) => {
 
 app.post('/owner/sendtask', function(req, res) {
   var options = req.body;
-  dbUtil.createTask(options, function(result) {
+  dbUtil.createTask(options)
+    .then((result) => {
     res.status(201).send('ok');
-  })
+  });
 });
 
 
 app.post('/sitter/accepttask', function(req, res) {
   var options = req.body;
-  dbUtil.acceptTask(options, function(result) {
+  dbUtil.acceptTask(options)
+    .then((result) => {
     res.status(201).send('accept');
-  })
+  });
 });
 
 app.post('/task/cancel', function(req, res) {
   var options = req.body;
-  dbUtil.cancelTask(options.id, function(result) {
+  dbUtil.cancelTask(options.id)
+    .then((result) => {
     res.status(201).send('cancel');
   })
 });
 
 app.post('/task/confirm', function(req, res) {
   var options = req.body;
-  dbUtil.confirmTask(options.id, function(result) {
+  dbUtil.confirmTask(options.id)
+    .then((result) => {
     res.status(201).send('confirm');
-  })
+  });
 });
 
 app.listen(3000, function() {

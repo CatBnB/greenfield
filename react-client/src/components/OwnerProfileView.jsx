@@ -23,8 +23,8 @@ class OwnerProfile extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    validateInput(this.state).then(data => post('/owner', data))
-                             .catch(err => console.log(err));
+    // validateInput(this.state).then(data => post('/owner', data))
+    //                          .catch(err => console.log(err));
   }
 
   handleChange(e) {

@@ -31,7 +31,7 @@ class Map extends React.Component {
   componentDidMount() {
     var mapOptions = {
       center: new google.maps.LatLng(37.7837, -122.4089),
-      zoom: 12,
+      zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(this.mapContainer, mapOptions);

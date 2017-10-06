@@ -55,6 +55,7 @@ class SittersInfo extends React.Component {
                   </div>
                 </div>
                 <div>description: {this.props.data.description}</div>
+                <hr></hr>
                 <div className="sitter-info-picture">
                   <div className='row'>
                     <div className="col-lg-4">
@@ -68,9 +69,7 @@ class SittersInfo extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div>
-                  Review:
-                </div>
+                <hr></hr>
                 <div className="sitter-info-reviewbox">
                   <div>
                     {this.state.reviews.map((data, index) => <SitterInfoViewReview key={index} data={data} />)}
@@ -79,6 +78,7 @@ class SittersInfo extends React.Component {
               </div>
             </div>
           </div>
+        <hr></hr>
         </div>
         <div className="row">
           <div className="col-lg-8">

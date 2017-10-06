@@ -13,15 +13,21 @@ class App extends React.Component {
     this.state = {
       data: {},
       pageState: 'HomePage',
-      auth: null
+      auth: null,
+      map: null
     };
 
     this.navClick = this.navClick.bind(this);
     this.initAuth = this.initAuth.bind(this);
+    this.setMap = this.setMap.bind(this);
   }
 
   initAuth(authObj) {
     this.setState({auth: authObj});
+  }
+
+  setMap(map) {
+    this.setState({map: map});
   }
 
   getData() {
@@ -43,10 +49,10 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Headerbar initAuth={this.initAuth} pageState={this.navClick} />
+        <Headerbar initAuth={this.initAuth} pageState={this.navClick} map={this.state.map} />
         <div className = 'container'>
           { this.state.pageState === 'HomePage' ?
-            <Map />
+            <Map setMap={this.setMap} />
             : this.state.pageState === 'SignUp' ?
                 (
                   <div>

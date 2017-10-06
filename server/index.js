@@ -5,18 +5,11 @@ var dbUtil = require('../database/index.js');
 // var database = require('../database/index.js');
 var app = express();
 
-app.listen(3000, function() {
-  console.log('Server started and listening on port 3000!!!!!');
-});
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 var hi = __dirname + '/../client/dist'
 console.log('hi:', hi)
 app.use(express.static(__dirname + '/../react-client/dist'));
-
-
-
 
 //GET route
 app.get('/owner/sitterdetail/:id', function(req, res) {
@@ -39,10 +32,6 @@ app.post('/sitter', (req, res) => {
     .catch(err => console.log(err));
 })
 
-
-app.listen(3000, function() {
-  console.log('Server started and listening on port 3000!!!!!');
-});
 app.get('/', function(req, res) {
   res.status(200).send('ok');
 });
@@ -74,4 +63,8 @@ app.post('/task/confirm', function(req, res) {
   dbUtil.confirmTask(options.id, function(result) {
     res.status(201).send('confirm');
   })
+});
+
+app.listen(3000, function() {
+  console.log('Server started and listening on port 3000!!!!!');
 });

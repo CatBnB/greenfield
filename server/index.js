@@ -14,9 +14,13 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 //GET route
 app.get('/owner/sitterdetail/:id', function(req, res) {
   var id = req.params.id;
-  dbUtil.getSitterDetail(id, function(result) {
-    res.send(result);
-  })
+  // dbUtil.getSitterDetail(id, function(result) {
+  //   res.send(result);
+  // });
+  dbUtil.getSitterDetail(id)
+    .then((result) => {
+      res.send(result);
+    })
 })
 
 app.get('/owner/dashboard/:id', function(req, res) {
@@ -34,13 +38,15 @@ app.get('/sitter/dashboard/:id', function(req, res) {
 })
 
 app.post('/sitter', (req, res) => {
-  var {address} = req.body;
+  var address = req.body.address;
   getCoordinatesFromInput(address)
     .then(coords => {
       req.body.latitude = coords[0];
       req.body.longitude = coords[1];
     })
-    .then(/*TODO: write to database*/)
+    .then((result) => {
+      dbUtil.insertSitterProfile(req.body)
+    })
     .then(results => res.send())
     .catch(err => console.log(err));
 })

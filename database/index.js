@@ -1,5 +1,13 @@
 var mysql = require('mysql');
 var geoHelper = require('../server/geoHelper');
+var db = require('mysql-promise')();
+
+db.configure({
+	"host": "localhost",
+	"user": "root",
+	"password": "",
+	"database": "catbnb"
+});
 
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -9,6 +17,7 @@ var connection = mysql.createConnection({
 });
 
 connection.connect();
+
 
 var basicQuery = function(query, values, cb) {
   connection.query(query, values, function(err, result) {
@@ -22,24 +31,20 @@ var basicQuery = function(query, values, cb) {
 
 
 
-var getSitterDetail = function(id, cb) {
+var getSitterDetail = function(id) {
   var qForSitter = 'SELECT * FROM sitterProfile WHERE id =' + id;
   var qForReview = 'SELECT review FROM Reviews WHERE sitter_id =' + id;
 
-  connection.query(qForSitter, function(err, sitter) {
-    if (err) {
-      throw err;
-    } else{
-      connection.query(qForReview, function(err, result) {
-        if (err) {
-          throw err;
-        } else {
-          sitter[0].reviews = result;
-          cb(sitter[0]);
-        }
-      })
-    }
-  })
+  return db.query(qForSitter)
+    .then((result) => {
+      const sitter = result[0][0];
+      return db.query(qForReview)
+        .then((reviews) => {
+          sitter.reviews = reviews[0];
+          console.log(sitter);
+          return sitter;
+        })
+    });
 };
 
 var insertOwnerProfile = function(options, cb) {
@@ -49,7 +54,7 @@ var insertOwnerProfile = function(options, cb) {
                 options.personality,options.other,options.address,now,options.phone,
                 options.email,options.zipcode];
   basicQuery(q, values, cb);
-}
+};
 
 var insertSitterProfile = function(options, cb) {
   var now = new Date();
@@ -57,12 +62,12 @@ var insertSitterProfile = function(options, cb) {
   var values = [options.fb_userId,options.name,options.photo,options.description,
                 options.comeIn,options.boarding,options.price,options.unit,now,
                 options.phone,options.email,options.address,options.zipcode,options.latitude,options.longitude];
-  basicQuery(q, values, cb);
-}
+  return db.query(q, values);
+};
 
 var updateOwnerProfile = function(fb_userId,cd) {
   //when owner want to change profile
-}
+};
 
 var getOwnerDetail = function(owner_id,cb) {
   var q = 'SELECT * FROM ownerProfile WHERE id = ' + owner_id;
@@ -100,7 +105,7 @@ var confirmTask = function(id, cb) {
 var getOwnerDashboard = function(id,cb) {
   var q = 'SELECT sitterProfile.name, status FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
   basicQuery(q, null, cb);
-}
+};
 
 var getSitterDashboard = function(id,cb) {
   var q = 'SELECT ownerProfile.name, status FROM tasksList JOIN ownerProfile ON ownerProfile.id = tasksList.owner_id WHERE sitter_id=' + id;
@@ -116,5 +121,6 @@ module.exports = {
   confirmTask,
   getOwnerDashboard,
   getSitterDashboard,
-  insertOwnerProfile
+  insertOwnerProfile,
+  insertSitterProfile
 };

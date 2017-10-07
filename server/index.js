@@ -12,6 +12,24 @@ console.log('hi:', hi)
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 //GET route
+app.get('/sitters', function(req, res) {
+  dbUtil.getSitters()
+        .then(results => res.send(results))
+        .catch(err => console.log(err));
+})
+
+app.get('/reviews/:sitterID', function(req, res) {
+  dbUtil.getSitterReviews(req.params.sitterID)
+        .then(results => res.send(results))
+        .catch(err => console.log(err));
+})
+
+app.get('/owner/:ownerID', function(req, res) {
+  dbUtil.getOwner(req.params.ownerID)
+        .then(results => res.send(results))
+        .catch(err => res.send(undefined));
+})
+
 app.get('/owner/sitterdetail/:id', function(req, res) {
   var id = req.params.id;
   dbUtil.getSitterDetail(id)

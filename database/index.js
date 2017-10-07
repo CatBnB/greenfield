@@ -9,6 +9,16 @@ db.configure({
 	"database": "catbnb"
 });
 
+var getSitters = function() {
+  return db.query('SELECT * FROM sitterProfile')
+           .then(results => results[0]);
+}
+
+var getSitterReviews = function(sitter_id) {
+    let q = 'SELECT * FROM Reviews where sitter_id=' + sitter_id;
+    return db.query(q).then(results => results[0]);
+};
+
 var getSitterDetail = function(id) {
   var qForSitter = 'SELECT * FROM sitterProfile WHERE id =' + id;
   var qForReview = 'SELECT review FROM Reviews WHERE sitter_id =' + id;
@@ -17,11 +27,11 @@ var getSitterDetail = function(id) {
     .then((result) => {
       const sitter = result[0][0];
       return db.query(qForReview)
-        .then((reviews) => {
-          sitter.reviews = reviews[0];
-          console.log(sitter);
-          return sitter;
-        })
+      .then((reviews) => {
+        sitter.reviews = reviews[0];
+        console.log(sitter);
+        return sitter;
+      })
     });
 };
 
@@ -47,9 +57,14 @@ var updateOwnerProfile = function(fb_userId,cd) {
   //when owner want to change profile
 };
 
+var getOwner = function(fb_userId) {
+  var q = 'SELECT * FROM ownerProfile WHERE fb_userId =' + fb_userId;
+  return db.query(q).then(results => results[0][0]);
+}
+
 //not finished
 var getOwnerDetail = function(owner_id) {
-  var q = 'SELECT * FROM ownerProfile WHERE id = ' + owner_id;
+  var q = 'SELECT * FROM ownerProfile WHERE id =' + owner_id;
   return db.query(q);
 };
 
@@ -90,6 +105,9 @@ var getSitterDashboard = function(id) {
 };
 
 module.exports = {
+  getSitters,
+  getSitterReviews,
+  getOwner,
   getSitterDetail,
   getOwnerDetail,
   createTask,

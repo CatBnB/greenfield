@@ -8,6 +8,7 @@ class SitterEntry extends React.Component {
   }
 
   handleClick() {
+    console.log(this.props.index);
     this.props.toggleView(this.props.index);
   }
 
@@ -21,7 +22,7 @@ class SitterEntry extends React.Component {
           <div className="sitter-view-title">{this.props.sitter.name}</div>
           <div className="sitter-view-detail">{this.props.sitter.description}</div>
           <div>Fee: ${this.props.sitter.price} / Day</div>
-          <div>Reviews: 3 Rates: 10/10</div>
+          <div>Rating: {this.props.sitter.rating}/10</div>
         </div>
       </div>
     );

@@ -20,5 +20,4 @@ const Bottombar = (props) => (
 	</footer>
 )
 
-export default Bottombar
-;
+export default Bottombar;

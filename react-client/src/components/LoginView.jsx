@@ -1,4 +1,5 @@
 import React from  'react';
+import {get} from '../ajaxHelper.js';
 
 class Login extends React.Component {
   constructor(props){
@@ -21,6 +22,9 @@ class Login extends React.Component {
           console.log('connected');
           console.log(response);
           context.props.initAuth(response);
+          get('/owner/' + response.authResponse.userID)
+            .then(user => context.props.setUser(user));
+
           FB.api('/me', function(response){
             console.log(response.name + " " + response.email, response.id);
           })

@@ -7,7 +7,7 @@ const SitterList = (props) => (
     <div className="sitter-view-box">
       { props.sitterClicked ?
         (<div>
-          <SitterInfo changeView={props.changeView} data={props.sitters[props.selected]}/>
+          <SitterInfo changeView={props.changeView} data={props.sitters[props.selected]} user={props.user} />
          </div>)
       : (<div>
           {props.sitters.map((sitter, index) =>

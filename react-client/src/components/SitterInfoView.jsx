@@ -1,12 +1,26 @@
 import React from 'react';
 import SendRequest from './SendRequestView.jsx';
 import SitterInfoViewReview from './SitterInfoViewReview.jsx'
+import {get} from '../ajaxHelper.js';
 
 class SittersInfo extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      reviews: []
+    };
 
     this.handleClick = this.handleClick.bind(this);
+    this.getReviews = this.getReviews.bind(this);
+  }
+
+  componentWillMount() {
+    this.getReviews();
+  }
+
+  getReviews() {
+    get('/reviews/' + this.props.data.id)
+      .then(reviews => this.setState({reviews: reviews}));
   }
 
   handleClick() {
@@ -59,11 +73,7 @@ class SittersInfo extends React.Component {
                 </div>
                 <div className="sitter-info-reviewbox">
                   <div>
-                    <SitterInfoViewReview />
-                    <SitterInfoViewReview />
-                    <SitterInfoViewReview />
-                    <SitterInfoViewReview />
-                    <SitterInfoViewReview />
+                    {this.state.reviews.map((data, index) => <SitterInfoViewReview key={index} data={data} />)}
                   </div>
                 </div>
               </div>
@@ -74,7 +84,7 @@ class SittersInfo extends React.Component {
           <div className="col-lg-8">
           </div>
           <div className="col-lg-4">
-            <SendRequest data={this.props.data} />
+            <SendRequest data={this.props.data} user={this.props.user}/>
           </div>
         </div>
       </div>

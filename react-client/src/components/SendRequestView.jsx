@@ -8,6 +8,7 @@ class SendRequest extends React.Component {
     this.state = {
       startDate: new Date(),
     };
+    console.log(this.props.user);
   }
 
   render() {

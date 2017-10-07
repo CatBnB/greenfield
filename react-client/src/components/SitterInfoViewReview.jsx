@@ -19,8 +19,8 @@ class SitterInfoViewReview extends React.Component {
         </div>
         <div className="media-body">
           <div className="sitter-view-title">Kevin Yeh</div>
-          <div className="sitter-view-detail">This is the best sitter ever!!</div>
-          <div>Rates: 10/10</div>
+          <div className="sitter-view-detail">{this.props.data.review}</div>
+          <div>Rates: {this.props.data.rating}/10</div>
         </div>
       </div>
     );

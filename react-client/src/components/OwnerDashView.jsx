@@ -8,12 +8,8 @@ class OwnerDashView extends React.Component {
     this.state = {
       data: {},
       status: {
-        sentShow: false,
-        acceptedShow: false,
-        readyShow: false,
-        finishedShow: false,
-        rejectedShow: false,
-        cancledShow: false
+        onGoing: false,
+        finished: false,
       },
       qty: {
         sent: 0,
@@ -80,7 +76,7 @@ class OwnerDashView extends React.Component {
         <h1> Dashboard: </h1>
         <hr></hr>
         <div className='Owner-dash-view'>
-          <div className='row' onClick={this.click.bind(this,'sentShow')}>
+          <div className='row' onClick={this.click.bind(this,'onGoing')}>
             <div className='col-lg-8'>
               <h2>On-Going Tasks</h2>
             </div>
@@ -90,7 +86,7 @@ class OwnerDashView extends React.Component {
           </div>
           {console.log(this.state.data)}
           { 
-            this.state.status.sentShow ?
+            this.state.status.onGoing ?
                 this.state.data.filter(ele => ele.status === 'sent').map((ele, index) => {
                   return (
                     <div className='Owner-dash-view-data' key={index}>
@@ -102,7 +98,7 @@ class OwnerDashView extends React.Component {
               <div></div>
           }
           <hr></hr>
-          <div className='row' onClick={this.click.bind(this,'acceptedShow')}>
+          <div className='row' onClick={this.click.bind(this,'finished')}>
             <div className='col-lg-8'>
               <h2>Finished Tasks</h2>
             </div>
@@ -111,7 +107,7 @@ class OwnerDashView extends React.Component {
             </div>
           </div>
           { 
-            this.state.status.acceptedShow ?
+            this.state.status.finished ?
             this.state.data.map((ele, index) => {
               return (
                 <div key={index}>

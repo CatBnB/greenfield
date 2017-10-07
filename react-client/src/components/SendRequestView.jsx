@@ -14,14 +14,15 @@ class SendRequest extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  sendRequest(e) {
+  sendRequest() {
     //check if login
       //if not alert('you need to log in first')
       //check if complete profile
         //if not alert('Please complete your profile')
         //if yes
+        console.log(this.props.user);
     let data = {
-      id: 1,
+      id: this.props.user.id,
       'sitter_id': this.props.data.id,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
@@ -52,10 +53,10 @@ class SendRequest extends React.Component {
               <div className="modal-body">
                 <div className="row sitter-info-name">
                   <h4 className="col-lg-9">
-                    Name:   Kevin Yeh
+                    Name: {this.props.data.name}
                   </h4>
                   <h5 className="col-lg-3">
-                    Rate: $50/hour
+                    Rate: ${this.props.data.price}/{this.props.data.unit}
                   </h5>
                 </div>
                 <div className="row sitter-request-data">

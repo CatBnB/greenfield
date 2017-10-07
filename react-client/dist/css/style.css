@@ -29,7 +29,7 @@
 
 .sitter-info {
 	width: 100%;
-	height: 600px;
+	height: 630px;
 }
 
 .sitter-view-inbox {
@@ -45,7 +45,7 @@
 	width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 600px;
+  height: 700px;
   font-size: 16px;
   padding: 8px;
   border: 2px;
@@ -58,7 +58,7 @@
 }
 
 .sitter-info-name {
-	padding: 20px;
+	padding: 15px;
 }
 
 .sitter-request-data {
@@ -70,7 +70,11 @@
 }
 
 .sitter-info-picture {
-	padding: 20px;
+	width: 100%;
+	padding: 6px;
+	overflow-x: scroll;
+  overflow-y: hidden;
+  background-color: #ddd
 }
 
 .sitter-info-reviewbox {
@@ -78,12 +82,41 @@
   overflow-y: scroll;
   overflow-x: hidden;
   height: 250px;
-  padding: 6px;
+  padding: 2px;
 	background-color: #eee;
 }
 
 .sitter-info-review-inbox {
-	padding: 3px;
+	padding: 1px;
 	border-style: groove;
 	background-color: #fff;
 }
+
+.Owner-dash-view {
+	height: 700px;
+	overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.owner-dash-entry {
+	border-color: #eee;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.Owner-dash-view :hover {
+	background-color: #eec;
+}
+
+.Owner-dash-view-data :hover {
+	border-color: #ded;
+	border-style: outset;
+ 	border-width: 4px;
+	background-color: white;
+	background-color: #efe;
+}
+
+.onwer-dash-entry :hover {
+	border-style: hidden;
+}
+

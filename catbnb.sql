@@ -90,6 +90,7 @@ CREATE TABLE `ownerProfile` (
 LOCK TABLES `ownerProfile` WRITE;
 /*!40000 ALTER TABLE `ownerProfile` DISABLE KEYS */;
 INSERT INTO `ownerProfile` VALUES (1,'12223434','bo',2,'wet food','','','shy','44 atalaya ter','2017-10-05','4153195997','umihui',94117,0),(2,'2120264864653958','kevin',2,'wet food','pills','','shy','44 atalaya ter','2017-10-05','4153195992','umihui@gmail.com',94117,0),(5,'12225634','john',2,'wet food','pills','','shy','44 atalaya ter','2017-10-05','4153195777','umihui@gmail.com',94117,0);
+INSERT INTO `ownerProfile` VALUES (3,'1310153075760130', 'Kevin Yeh','1','Same','','','shy','1990 S. Delaware San Mateo','2017-10-05','626-215-8079','revinyeh@gmail.com',94403,0);
 /*!40000 ALTER TABLE `ownerProfile` ENABLE KEYS */;
 UNLOCK TABLES;
 

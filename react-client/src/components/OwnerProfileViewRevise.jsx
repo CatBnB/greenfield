@@ -3,7 +3,7 @@ import {post, validateInput} from '../ajaxHelper.js';
 import Dropzone from 'react-dropzone'
 import $ from 'jquery';
 
-class OwnerProfile extends React.Component {
+class OwnerProfileRevise extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,7 +58,7 @@ class OwnerProfile extends React.Component {
   render() {
     return (
       <form onChange={this.handleChange}>
-        <h2> Owner Profile </h2>
+        <h2> Owner Profile Revise </h2>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">User Name</label>
           <input id="name" type="text" className="form-control" placeholder="User Name"></input>
@@ -135,4 +135,4 @@ class OwnerProfile extends React.Component {
   }
 }
 
-export default OwnerProfile
+export default OwnerProfileRevise

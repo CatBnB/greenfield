@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var getCoordinatesFromInput = require('./geoHelper.js').getCoordinatesFromInput;
 var dbUtil = require('../database/index.js');
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' })
 // var database = require('../database/index.js');
 var app = express();
 
@@ -49,8 +51,10 @@ app.get('/owner/dashboard/:id', function(req, res) {
 app.get('/sitter/dashboard/:id', function(req, res) {
   var id = req.params.id;
   dbUtil.getSitterDashboard(id)
-  .then((result) =>
-    res.send(result[0])
+  .then((result) => {
+    console.log('dashboard result:',result);
+    res.send(result[0]);
+  }
   );
 })
 
@@ -94,13 +98,19 @@ app.post('/task/cancel', function(req, res) {
   })
 });
 
-app.post('/task/confirm', function(req, res) {
+app.post('/task/confirm', upload.single('avatar'), function(req, res) {
   var options = req.body;
   dbUtil.confirmTask(options.id)
     .then((result) => {
     res.status(201).send('confirm');
   });
 });
+
+app.post('/owner/image',upload.single('avatar'), function(req, res) {
+  console.log('its a file from user uploaded for owners image',req.file)
+})
+
+
 
 app.listen(3000, function() {
   console.log('Server started and listening on port 3000!!!!!');

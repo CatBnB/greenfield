@@ -27,7 +27,7 @@ app.get('/reviews/:sitterID', function(req, res) {
 app.get('/owner/:ownerID', function(req, res) {
   dbUtil.getOwner(req.params.ownerID)
         .then(results => res.send(results))
-        .catch(err => res.send(undefined));
+        .catch(err => res.send(null));
 })
 
 app.get('/owner/sitterdetail/:id', function(req, res) {

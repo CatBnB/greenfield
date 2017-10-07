@@ -18,12 +18,12 @@ class App extends React.Component {
     };
 
     this.navClick = this.navClick.bind(this);
-    this.initAuth = this.initAuth.bind(this);
+    this.setAuth = this.setAuth.bind(this);
     this.setMap = this.setMap.bind(this);
     this.setUser = this.setUser.bind(this);
   }
 
-  initAuth(authObj) {
+  setAuth(authObj) {
     this.setState({auth: authObj});
   }
 
@@ -36,21 +36,14 @@ class App extends React.Component {
   }
 
   navClick(data) {
-    if(data === 'SignUp')
-    this.setState({
-      pageState: 'SignUp'
-    })
-    if(data === 'HomePage')
-    this.setState({
-      pageState: 'HomePage'
-    })
+    if(data === 'SignUp') this.setState({pageState: 'SignUp'});
+    if(data === 'HomePage') this.setState({pageState: 'HomePage'});
   }
-
 
   render () {
     return (
       <div>
-        <Headerbar initAuth={this.initAuth} pageState={this.navClick}
+        <Headerbar setAuth={this.setAuth} pageState={this.navClick}
                    map={this.state.map} setUser={this.setUser} />
         <div className = 'container'>
           { this.state.pageState === 'HomePage' ?

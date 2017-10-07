@@ -4,7 +4,6 @@ import {get} from '../ajaxHelper.js';
 class Login extends React.Component {
   constructor(props){
     super(props);
-
   }
 
   componentWillMount(){
@@ -19,26 +18,25 @@ class Login extends React.Component {
 
       window.FB.getLoginStatus(function(response){
         if(response.status === 'connected'){
-          console.log('connected');
-          console.log(response);
-          context.props.initAuth(response);
           get('/owner/' + response.authResponse.userID)
             .then(user => context.props.setUser(user));
-
-          FB.api('/me', function(response){
-            console.log(response.name + " " + response.email, response.id);
-          })
-
-          var accessToken = response.authResponse.accessToken;
-          console.log(response);
         }else if(response === 'not_authorized'){
           console.log('not autorized')
         }else{
           console.log('not logged in');
         }
-
       }, true)
-        FB.AppEvents.logPageView();
+
+      FB.Event.subscribe('auth.login', (response) => {
+        get('/owner/' + response.authResponse.userID)
+        .then(user => context.props.setUser(user));
+        context.props.setAuth(response);
+      });
+
+      FB.Event.subscribe('auth.logout', (response) => {
+        context.props.setAuth(response);
+        context.props.setUser(null);
+      });
     };
 
     (function(d, s, id){

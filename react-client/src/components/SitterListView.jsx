@@ -10,8 +10,7 @@ const SitterList = (props) => (
           <SitterInfo changeView={props.changeView} data={props.sitters[props.selected]} user={props.user} />
          </div>)
       : (<div>
-          {props.sitters.map((sitter, index) =>
-            <SitterEntry key={index} index={index} sitter={sitter} toggleView={props.toggleView} />)}
+          
         </div>) }
     </div>
   </div>

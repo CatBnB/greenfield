@@ -91,3 +91,9 @@
 	border-style: groove;
 	background-color: #fff;
 }
+
+.Owner-dash-entry {
+	height: 700px;
+	overflow-y: scroll;
+  overflow-x: hidden;
+}

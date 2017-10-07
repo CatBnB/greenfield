@@ -82,12 +82,13 @@ class OwnerDashView extends React.Component {
         <div className='Owner-dash-view'>
           <div className='row' onClick={this.click.bind(this,'sentShow')}>
             <div className='col-lg-8'>
-              <h2>Sent Request</h2>
+              <h2>On-Going Tasks</h2>
             </div>
             <div className='col-lg-4'>
               <h3>You have {this.state.qty.sent} tasks</h3>
             </div>
           </div>
+          {console.log(this.state.data)}
           { 
             this.state.status.sentShow ?
                 this.state.data.filter(ele => ele.status === 'sent').map((ele, index) => {
@@ -103,7 +104,7 @@ class OwnerDashView extends React.Component {
           <hr></hr>
           <div className='row' onClick={this.click.bind(this,'acceptedShow')}>
             <div className='col-lg-8'>
-              <h2>Accepted Request</h2>
+              <h2>Finished Tasks</h2>
             </div>
             <div className='col-lg-4'>
               <h3>You have {this.state.qty.accepted} tasks</h3>
@@ -121,90 +122,6 @@ class OwnerDashView extends React.Component {
             :
             <div></div>
           }
-          <hr></hr>
-          <div className='row' onClick={this.click.bind(this,'readyShow')}>
-            <div className='col-lg-8'>
-              <h2>Ready to Leave Review</h2>
-            </div>
-            <div className='col-lg-4'>
-              <h3>You have {this.state.qty.ready} tasks</h3>
-            </div>
-          </div>
-          { 
-            this.state.status.readyShow ?
-            this.state.data.map((ele, index) => {
-              return (
-                <div key={index}>
-                  sent data
-                </div>
-              )
-            })
-            :
-            <div></div>
-          }        
-          <hr></hr>
-          <div className='row' onClick={this.click.bind(this,'finishedShow')}>
-            <div className='col-lg-8'>
-              <h2>Finishied Request</h2>
-            </div>
-            <div className='col-lg-4'>
-              <h3>You have {this.state.qty.finished} tasks</h3>
-            </div>
-          </div>
-          { 
-            this.state.status.finishedShow ?
-            this.state.data.map((ele, index) => {
-              return (
-                <div key={index}>
-                  sent data
-                </div>
-              )
-            })
-            :
-            <div></div>
-          }  
-          <hr></hr>
-          <div className='row' onClick={this.click.bind(this,'rejectedShow')}>
-            <div className='col-lg-8'>
-              <h2>Rejected Request</h2>
-            </div>
-            <div className='col-lg-4'>
-             <h3>You have {this.state.qty.rejected} tasks</h3>
-            </div>
-          </div>
-          { 
-            this.state.status.rejectedShow ?
-            this.state.data.map((ele, index) => {
-              return (
-                <div key={index}>
-                  sent data
-                </div>
-              )
-            })
-            :
-            <div></div>
-          } 
-          <hr></hr>
-          <div className='row' onClick={this.click.bind(this,'cancleShow')}>
-            <div className='col-lg-8'>
-              <h2>Cancled Request</h2>
-            </div>
-            <div className='col-lg-4'>
-              <h3>You have {this.state.qty.cancled} tasks</h3>
-            </div>
-          </div>
-          { 
-            this.state.status.cancleShow ?
-            this.state.data.map((ele, index) => {
-              return (
-                <div key={index}>
-                  sent data
-                </div>
-              )
-            })
-            :
-            <div></div>
-          } 
         </div>         
       </div>
     )

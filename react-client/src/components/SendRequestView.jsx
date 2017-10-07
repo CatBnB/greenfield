@@ -1,20 +1,45 @@
 import React from 'react';
-import post from '../ajaxHelper.js';
+import {post}from '../ajaxHelper.js';
 // import DatePicker from 'DatePicker'
 
 class SendRequest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: new Date(),
+      startDate: null,
+      endDate:null,
+      ownerText:null
     };
-    console.log(this.props.user);
+    this.sendRequest = this.sendRequest.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  sendRequest(e) {
+    //check if login
+      //if not alert('you need to log in first')
+      //check if complete profile
+        //if not alert('Please complete your profile')
+        //if yes
+    let data = {
+      id: 1,
+      'sitter_id': this.props.data.id,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+      message: this.state.ownerText
+    }
+    post('/owner/sendtask', JSON.stringify(data));
+  }
+
+  handleChange(event) {
+    var obj ={}
+    obj[event.target.id]= event.target.value;
+    this.setState(obj);
   }
 
   render() {
     return (
       <div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Contact sitter</button>
+        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" >Contact sitter</button>
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -50,23 +75,23 @@ class SendRequest extends React.Component {
                   </div>
                   <div className="col-lg-5">
                     <div className='sitter-request-data-inline'>
-                      <input type='date' id='date'></input>
+                      <input type='date' id='startDate' onChange={this.handleChange}></input>
                     </div>
                     <div className='sitter-request-data-inline'>
-                      <input type='date' id='date'></input>
+                      <input type='date' id='endDate' onChange={this.handleChange}></input>
                     </div>
                   </div>
                 </div>
-                <form>
-                  <div className="form-group">
-                    <label htmlFor="message-text" className="form-control-label">Request Detail Message:</label>
-                    <textarea className="form-control" id="message-text"></textarea>
+                <div>
+                  <div className="div-group">
+                    <label htmlFor="message-text" className="div-control-label">Request Detail Message:</label>
+                    <textarea className="div-control" id="ownerText" onChange={this.handleChange}></textarea>
                   </div>
-                </form>
+                </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary">Send Quest</button>
+                <button type="button" className="btn btn-primary" onClick={this.sendRequest}>Send Quest</button>
               </div>
             </div>
           </div>

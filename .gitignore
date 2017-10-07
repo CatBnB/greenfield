@@ -3,3 +3,4 @@ bundle.js
 .DS_Store
 .DS_Store
 react-client/.DS_Store
+*.sql

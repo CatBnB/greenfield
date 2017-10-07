@@ -1,7 +1,7 @@
 var $ = require('jquery');
 
 // url should be directed at a :user style endpoint
-module.exports = (endpoint) => {
+module.exports.get = (endpoint) => {
   console.log($.ajax);
   return new Promise(function(resolve, reject) {
     $.ajax({

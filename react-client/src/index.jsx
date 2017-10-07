@@ -26,8 +26,10 @@ class App extends React.Component {
   }
 
   setAuth(authObj) {
-    this.setState({auth: authObj});
-    console.log('auth: ',authObj)
+    this.setState({auth: authObj}, () => {
+      console.log('auth:', authObj);
+    });
+
   }
 
   setMap(map) {
@@ -63,13 +65,13 @@ class App extends React.Component {
             : this.state.pageState === 'SignUp' ?
                 (
                   <div>
-                    <OwnerProfile />
+                    <OwnerProfile auth={this.state.auth} returnHomePage={this.navClick.bind(this)}/>
                   </div>
                 )
               : this.state.pageState === 'Profile' ?
                 (
                   <div>
-                    <OwnerProfileRevise />
+                    <OwnerProfileRevise user={this.state.user}/>
                   </div>
                 )
                 : this.state.pageState === 'Dashboard' ?

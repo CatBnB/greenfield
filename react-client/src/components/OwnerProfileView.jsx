@@ -8,10 +8,10 @@ class OwnerProfile extends React.Component {
     super(props);
     this.state = {
       name: null,
-      numOfCats: null,
+      numOfCats: 1,
       food: null,
       medical: null,
-      personality: null,
+      personality: 'Grumpy',
       other: null,
       address: null,
       zipcode: null,
@@ -22,42 +22,50 @@ class OwnerProfile extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
+// [options.fb_userId,options.name,options.numOfCats,options.food,options.medical,
+              // options.personality,options.other,options.address,now,options.phone,
+              // options.email,options.zipcode];
   handleSubmit(e) {
     e.preventDefault();
+    console.log('clicked');
+    let profileData = this.state;
+    profileData['fb_userId'] = this.props.auth.authResponse.userID;
     // validateInput(this.state).then(data => post('/owner', data))
     //                          .catch(err => console.log(err));
+
+    post('/ownerprofile/create', JSON.stringify(profileData));
+    this.props.returnHomePage('HomePage');
   }
 
   handleChange(e) {
-    console.log(e.target.id);
+
     var update = {};
     update[e.target.id] = e.target.value;
     this.setState(update);
   }
 
-  uploadFile(files) {
-    const image = files[0]
-    console.log('uploadFile: ',image);
-    $.ajax({
-      url: '/owner/image',
-      type: 'POST',
-      data: JSON.stringify(image),
-      dataType: 'multipart/form-data',
-      traditional : true, 
-      success: function(data){
-        console.log('successed')
-      },
-      error: function(err){
-        console.log('error from owner image upload post request')
-      }
-    })
-  }
+  // uploadFile(files) {
+  //   const image = files[0]
+  //   console.log('uploadFile: ',image);
+  //   $.ajax({
+  //     url: '/owner/image',
+  //     type: 'POST',
+  //     data: JSON.stringify(image),
+  //     dataType: 'multipart/form-data',
+  //     traditional : true,
+  //     success: function(data){
+  //       console.log('successed')
+  //     },
+  //     error: function(err){
+  //       console.log('error from owner image upload post request')
+  //     }
+  //   })
+  // }
 
 
   render() {
     return (
-      <form onChange={this.handleChange}>
+      <form onChange={this.handleChange} >
         <h2> Owner Profile </h2>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">User Name</label>
@@ -118,16 +126,16 @@ class OwnerProfile extends React.Component {
           <label htmlFor="exampleTextarea">Other:</label>
           <textarea id="other" className="form-control" rows="3"></textarea>
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="exampleInputFile">Pictures input</label>
           <input type="file" className="form-control-file"></input>
-        </div>
+        </div> */}
         <div className="form-check">
           <label className="form-check-label">
             <input type="checkbox" className="form-check-input"></input>
             Accept to be a user
           </label>
-          <Dropzone onDrop={this.uploadFile.bind(this)}/>
+          {/* <Dropzone onDrop={this.uploadFile.bind(this)}/> */}
         </div>
         <button onClick={this.handleSubmit} type="submit" className="btn btn-primary">Submit</button>
       </form>

@@ -56,8 +56,8 @@ class Headerbar extends React.Component {
                 <div className="nav-link" onClick={this.props.pageState.bind(null,'SignUp')} >Sign-Up</div>
                 :
                   <div className='row'>
-                    <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Profile')} >Profile</div> 
-                    <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Dashboard')} >Dashboard</div> 
+                    <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Profile')} >Profile</div>
+                    <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Dashboard')} >Dashboard</div>
                   </div>
               }
               </li>

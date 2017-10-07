@@ -17,9 +17,11 @@ class Login extends React.Component {
       });
 
       window.FB.getLoginStatus(function(response){
+        context.props.setAuth(response);
         if(response.status === 'connected'){
           get('/owner/' + response.authResponse.userID)
-            .then(user => context.props.setUser(user));
+            .then(user => context.props.setUser(user))
+            .catch(err => console.log('login',err));
         }else if(response === 'not_authorized'){
           console.log('not autorized')
         }else{
@@ -29,7 +31,8 @@ class Login extends React.Component {
 
       FB.Event.subscribe('auth.login', (response) => {
         get('/owner/' + response.authResponse.userID)
-        .then(user => context.props.setUser(user));
+        .then(user => context.props.setUser(user))
+        .catch(err => console.log(err));
         context.props.setAuth(response);
       });
 

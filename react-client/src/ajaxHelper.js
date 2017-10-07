@@ -15,7 +15,7 @@ export const get = (endpoint) => {
 };
 
 export const post = (endpoint, data) => {
-  console.log(data);
+  console.log('post',data);
   return new Promise(function(resolve, reject) {
     $.ajax({
       type: 'POST',

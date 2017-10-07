@@ -39,16 +39,17 @@ var getSitterDetail = function(id) {
     });
 };
 
-var insertOwnerProfile = function(options, cb) {
+var insertOwnerProfile = function(options) {
   var now = new Date();
-  var q = 'INSERT INTO ownerProfile values (null,?,?,?,?,?,?,?,?,?,?,?,?)';
+  var q = 'INSERT INTO ownerProfile values (null,?,?,?,?,?,?,?,?,?,?,?,?,1)';
   var values = [options.fb_userId,options.name,options.numOfCats,options.food,options.medical,
                 options.personality,options.other,options.address,now,options.phone,
                 options.email,options.zipcode];
+								console.log(values);
   return db.query(q, values);
 };
 
-var insertSitterProfile = function(options, cb) {
+var insertSitterProfile = function(options) {
   var now = new Date();
   var q = 'INSERT INTO sitterProfile values (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
   var values = [options.fb_userId,options.name,options.photo,options.description,
@@ -63,7 +64,13 @@ var updateOwnerProfile = function(fb_userId,cd) {
 
 var getOwner = function(fb_userId) {
   var q = 'SELECT * FROM ownerProfile WHERE fb_userId =' + fb_userId;
-  return db.query(q).then(results => results[0][0]);
+  return db.query(q).then(results => {
+		if (results[0].length === 0) {
+			throw err;
+		} else {
+			return results[0][0];
+		}
+	});
 }
 
 //not finished

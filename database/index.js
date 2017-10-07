@@ -1,3 +1,7 @@
+/*
+
+*/
+
 var mysql = require('mysql');
 var geoHelper = require('../server/geoHelper');
 var db = require('mysql-promise')();
@@ -95,7 +99,7 @@ var confirmTask = function(id) {
 };
 
 var getOwnerDashboard = function(id) {
-  var q = 'SELECT sitterProfile.name, status FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
+  var q = 'SELECT sitterProfile.name as sitter_name, status,startDate,endDate,tasksList.createdAt,finalPrice FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
   return db.query(q);
 };
 

@@ -15,20 +15,20 @@ class SendRequest extends React.Component {
   }
 
   sendRequest() {
-    //check if login
-      //if not alert('you need to log in first')
-      //check if complete profile
-        //if not alert('Please complete your profile')
-        //if yes
-        console.log(this.props.user);
-    let data = {
-      id: this.props.user.id,
-      'sitter_id': this.props.data.id,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
-      message: this.state.ownerText
+    if(this.props.auth){
+      let data = {
+        id: this.props.user.id,
+        'sitter_id': this.props.data.id,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        message: this.state.ownerText
+      }
+      post('/owner/sendtask', JSON.stringify(data));
+      $('#exampleModal').modal('hide');
+    } else {
+      $('#exampleModal').modal('hide');
+      alert('You need to log in first!');
     }
-    post('/owner/sendtask', JSON.stringify(data));
   }
 
   handleChange(event) {
@@ -38,6 +38,7 @@ class SendRequest extends React.Component {
   }
 
   render() {
+    //console.log('AUTH IN SENDREQ', this.props.auth.status);
     return (
       <div>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" >Contact sitter</button>

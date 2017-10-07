@@ -55,7 +55,7 @@ class Headerbar extends React.Component {
                 <div className="nav-link" onClick={this.props.pageState.bind(null,'SignUp')} >Sign-Up</div>
               </li>
               <li className="nav-item">
-                <Login initAuth={this.props.initAuth} setUser={this.props.setUser} />
+                <Login setAuth={this.props.setAuth} setUser={this.props.setUser} />
               </li>
             </ul>
             <form onSubmit={this.handleSubmit} className="form-inline my-2 my-lg-0">

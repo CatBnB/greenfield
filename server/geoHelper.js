@@ -1,4 +1,4 @@
-var get = require('./ajaxHelper.js');
+var {get} = require('./ajaxHelper.js');
 
 // data rounded to 7 decimal places
 var formatGeoData = data => {

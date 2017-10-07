@@ -28,6 +28,7 @@ class SittersInfo extends React.Component {
   }
 
   render() {
+    //console.log('AUTH IN INFO', this.props.auth);
     return (
       <div>
         <div className="sitter-info">
@@ -84,7 +85,7 @@ class SittersInfo extends React.Component {
           <div className="col-lg-8">
           </div>
           <div className="col-lg-4">
-            <SendRequest data={this.props.data} user={this.props.user}/>
+            <SendRequest data={this.props.data} user={this.props.user} auth={this.props.auth}/>
           </div>
         </div>
       </div>

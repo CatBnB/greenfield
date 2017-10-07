@@ -5,7 +5,9 @@ import Map from './components/MapView.jsx';
 import Headerbar from './components/HeaderbarView.jsx';
 import Bottombar from './components/Bottombar.jsx';
 import OwnerProfile from './components/OwnerProfileView.jsx';
+import OwnerProfileRevise from './components/OwnerProfileViewRevise.jsx';
 import SitterProfile from './components/SitterProfileView.jsx';
+import OwnerDashView from './components/OwnerDashView.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -25,6 +27,7 @@ class App extends React.Component {
 
   setAuth(authObj) {
     this.setState({auth: authObj});
+    console.log('auth: ',authObj)
   }
 
   setMap(map) {
@@ -38,13 +41,21 @@ class App extends React.Component {
   navClick(data) {
     if(data === 'SignUp') this.setState({pageState: 'SignUp'});
     if(data === 'HomePage') this.setState({pageState: 'HomePage'});
+    if(data === 'Profile')
+    this.setState({
+      pageState: 'Profile'
+    })
+    if(data === 'Dashboard')
+    this.setState({
+      pageState: 'Dashboard'
+    })
   }
 
   render () {
     return (
       <div>
         <Headerbar setAuth={this.setAuth} pageState={this.navClick}
-                   map={this.state.map} setUser={this.setUser} />
+                   map={this.state.map} setUser={this.setUser} user={this.state.user}/>
         <div className = 'container'>
           { this.state.pageState === 'HomePage' ?
             <Map setMap={this.setMap} user={this.state.user}
@@ -55,11 +66,24 @@ class App extends React.Component {
                     <OwnerProfile />
                   </div>
                 )
-              : (
+              : this.state.pageState === 'Profile' ?
+                (
                   <div>
-                    <SitterProfile />
+                    <OwnerProfileRevise />
                   </div>
                 )
+                : this.state.pageState === 'Dashboard' ?
+                  (
+                    <div>
+                      <OwnerDashView owner={this.state.auth}/>
+                    </div>
+                  )
+                  :
+                  (
+                    <div>
+                      <SitterProfile />
+                    </div>
+                  )
           }
         </div>
         <Bottombar pageState={this.navClick}/>

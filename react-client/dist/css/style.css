@@ -70,7 +70,11 @@
 }
 
 .sitter-info-picture {
-	padding: 2px;
+	width: 100%;
+	padding: 6px;
+	overflow-x: scroll;
+  overflow-y: hidden;
+  background-color: #ddd
 }
 
 .sitter-info-reviewbox {

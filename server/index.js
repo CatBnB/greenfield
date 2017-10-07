@@ -51,8 +51,10 @@ app.get('/owner/dashboard/:id', function(req, res) {
 app.get('/sitter/dashboard/:id', function(req, res) {
   var id = req.params.id;
   dbUtil.getSitterDashboard(id)
-  .then((result) =>
-    res.send(result[0])
+  .then((result) => {
+    console.log('dashboard result:',result);
+    res.send(result[0]);
+  }
   );
 })
 

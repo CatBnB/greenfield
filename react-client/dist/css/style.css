@@ -92,8 +92,31 @@
 	background-color: #fff;
 }
 
-.Owner-dash-entry {
+.Owner-dash-view {
 	height: 700px;
 	overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.owner-dash-entry {
+	border-color: #eee;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.Owner-dash-view :hover {
+	background-color: #eec;
+}
+
+.Owner-dash-view-data :hover {
+	border-color: #ded;
+	border-style: outset;
+ 	border-width: 4px;
+	background-color: white;
+	background-color: #efe;
+}
+
+.onwer-dash-entry :hover {
+	border-style: hidden;
+}
+

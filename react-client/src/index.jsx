@@ -75,7 +75,7 @@ class App extends React.Component {
                 : this.state.pageState === 'Dashboard' ?
                   (
                     <div>
-                      <OwnerDashView owner={this.state.auth}/>
+                      <OwnerDashView owner={this.state.user}/>
                     </div>
                   )
                   :

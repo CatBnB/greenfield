@@ -52,7 +52,7 @@ class Headerbar extends React.Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-              { this.props.auth === null ?
+              { this.props.user === null ?
                 <div className="nav-link" onClick={this.props.pageState.bind(null,'SignUp')} >Sign-Up</div>
                 :
                   <div className='row'>

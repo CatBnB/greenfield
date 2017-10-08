@@ -172,7 +172,13 @@ CREATE TABLE `tasksList` (
 
 LOCK TABLES `tasksList` WRITE;
 /*!40000 ALTER TABLE `tasksList` DISABLE KEYS */;
-INSERT INTO `tasksList` VALUES (3,1,'hi','2017-10-05','2017-10-10','2017-10-04','confirmed',2,'ok','2017-10-04','2017-10-04',200),(4,1,'hi','2017-10-05','2017-10-10','2017-10-04','sent',2,NULL,NULL,NULL,NULL),(5,1,'hi','2017-10-05','2017-10-10','2017-10-04','sent',2,NULL,NULL,NULL,NULL),(6,1,'hi','2017-10-05','2017-10-10','2017-10-05','sent',2,NULL,NULL,NULL,NULL),(7,2,'hi test','2017-10-07','2017-10-10','2017-10-05','confirmed',2,'great','2017-10-05','2017-10-05',200);
+INSERT INTO `tasksList` VALUES (3,3,'hi','2017-10-05','2017-10-10','2017-10-04','confirmed',2,'ok','2017-10-04','2017-10-04',200),
+  (4,1,'hi','2017-10-05','2017-10-10','2017-10-04','sent',2,NULL,NULL,NULL,NULL),
+  (5,1,'hi','2017-10-05','2017-10-10','2017-10-04','sent',2,NULL,NULL,NULL,NULL),
+  (6,3,'hi','2017-10-05','2017-10-10','2017-10-05','sent',2,NULL,NULL,NULL,NULL),
+  (7,3,'hi test','2017-10-07','2017-10-10','2017-10-05','paid',2,'great','2017-10-05','2017-10-05',200),
+  (8,3,'hi test','2017-10-07','2017-10-10','2017-10-05','cancled',2,'great','2017-10-05','2017-10-05',150),
+  (9,3,'hi test','2017-10-07','2017-10-10','2017-10-05','ready',2,'great','2017-10-05','2017-10-05',180);
 /*!40000 ALTER TABLE `tasksList` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

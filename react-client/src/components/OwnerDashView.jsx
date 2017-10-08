@@ -109,10 +109,10 @@ class OwnerDashView extends React.Component {
           </div>
           { 
             this.state.status.finished ?
-                this.state.data.filter(ele => ele.status === 'canceled' || ele.status === 'finished' ).map((ele, index) => {
+                this.state.data.filter(ele => ele.status === 'cancled' || ele.status === 'finished' ).map((ele, index) => {
                   return (
                     <div className='Owner-dash-view-data' key={index}>
-                      hi
+                      {<OwnerDashEntryFinished task={ele} keys={index} />}
                     </div>
                   )  
                 })

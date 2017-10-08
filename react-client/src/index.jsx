@@ -27,7 +27,7 @@ class App extends React.Component {
 
   setAuth(authObj) {
     this.setState({auth: authObj}, () => {
-      console.log('auth:', authObj);
+      // console.log('auth:', authObj);
     });
 
   }

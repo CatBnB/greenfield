@@ -27,7 +27,7 @@ class OwnerProfileRevise extends React.Component {
     console.log('revise clicked',this.props.user);
     e.preventDefault();
     post('/ownerprofile/create', JSON.stringify(this.state));
-    this.props.returnHomePage('HomePage')
+    this.props.returnHomePage('HomePage');
     // validateInput(this.state).then(data => post('/owner', data))
     //                          .catch(err => console.log(err));
   }

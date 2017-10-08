@@ -1,5 +1,5 @@
 import React from 'react';
-import {post, validateInput} from '../ajaxHelper.js';
+import {get, post, validateInput} from '../ajaxHelper.js';
 import Dropzone from 'react-dropzone'
 import $ from 'jquery';
 
@@ -33,8 +33,12 @@ class OwnerProfile extends React.Component {
     // validateInput(this.state).then(data => post('/owner', data))
     //                          .catch(err => console.log(err));
 
-    post('/ownerprofile/create', JSON.stringify(profileData));
-    this.props.returnHomePage('HomePage');
+    post('/ownerprofile/create', JSON.stringify(profileData))
+      .then((result)=> {
+        this.props.returnHomePage('HomePage');
+        get('/owner/' + this.props.auth.authResponse.userID)
+          .then(user => this.props.setUser(user))
+      });
   }
 
   handleChange(e) {

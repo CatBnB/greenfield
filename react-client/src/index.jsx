@@ -57,7 +57,7 @@ class App extends React.Component {
     return (
       <div>
         <Headerbar setAuth={this.setAuth} pageState={this.navClick}
-                   map={this.state.map} setUser={this.setUser} user={this.state.user}/>
+                   map={this.state.map} setUser={this.setUser} user={this.state.user} auth={this.state.auth}/>
         <div className = 'container'>
           { this.state.pageState === 'HomePage' ?
             <Map setMap={this.setMap} user={this.state.user} auth={this.state.auth}

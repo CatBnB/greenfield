@@ -115,6 +115,11 @@ var getSitterDashboard = function(id) {
   return db.query(q);
 };
 
+var insertReview = function(options) {
+	var q = 'INSERT INTO reviews VALUES (null, ?,?,?,?,?)';
+	var values = [options.review,options.owner_id,options.sitter_id, options.id, option.rating];
+	return db.query(q,values);
+}
 module.exports = {
   getSitters,
   getSitterReviews,

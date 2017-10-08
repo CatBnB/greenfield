@@ -133,7 +133,7 @@ CREATE TABLE `sitterProfile` (
 
 LOCK TABLES `sitterProfile` WRITE;
 /*!40000 ALTER TABLE `sitterProfile` DISABLE KEYS */;
-INSERT INTO `sitterProfile` VALUES (1,'"2120264864653958"','victor','jkdshf','awesome',0,1,40,'day','2017-10-04','4153195297','victor@gmail.com','201 spear ter','94102',37.784923,-122.412517,9),(2,'123434','umi','jkdshf','awesome',1,1,30,'visit','2017-10-04','4153195997','umihui','44 atalaya ter','94117',37.783252,-122.405951,8);
+INSERT INTO `sitterProfile` VALUES (1,'"2120264864"','victor','jkdshf','awesome',0,1,40,'day','2017-10-04','4153195297','victor@gmail.com','201 spear ter','94102',37.784923,-122.412517,9),(2,'123434','umi','jkdshf','awesome',1,1,30,'visit','2017-10-04','4153195997','umihui','44 atalaya ter','94117',37.783252,-122.405951,8);
 /*!40000 ALTER TABLE `sitterProfile` ENABLE KEYS */;
 UNLOCK TABLES;
 

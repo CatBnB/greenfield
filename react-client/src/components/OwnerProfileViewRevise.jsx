@@ -28,8 +28,6 @@ class OwnerProfileRevise extends React.Component {
     e.preventDefault();
     post('/ownerprofile/create', JSON.stringify(this.state));
     this.props.returnHomePage('HomePage');
-    // validateInput(this.state).then(data => post('/owner', data))
-    //                          .catch(err => console.log(err));
   }
 
   handleChange(e) {

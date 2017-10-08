@@ -34,7 +34,6 @@ class OwnerProfile extends React.Component {
 
     validateInputs(this.state)
       .then(data => {
-        console.log('reached>>>>>>>>>>>');
         post('/ownerprofile/create', JSON.stringify(data)).then(()=> {
           get('/owner/' + this.props.auth.authResponse.userID).then(user => {
             this.props.setUser(user)
@@ -46,7 +45,7 @@ class OwnerProfile extends React.Component {
   }
 
   handleChange(e) {
-
+    console.log(this.state);
     var update = {};
     update[e.target.id] = e.target.value;
     this.setState(update);

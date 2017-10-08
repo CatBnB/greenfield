@@ -89,7 +89,7 @@ CREATE TABLE `ownerProfile` (
 
 LOCK TABLES `ownerProfile` WRITE;
 /*!40000 ALTER TABLE `ownerProfile` DISABLE KEYS */;
-INSERT INTO `ownerProfile` VALUES (1,'12223434','bo',2,'wet food','','','shy','44 atalaya ter','2017-10-05','4153195997','umihui',94117,0),(2,'2120264864653958','kevin',2,'wet food','pills','','shy','44 atalaya ter','2017-10-05','4153195992','umihui@gmail.com',94117,0),(5,'12225634','john',2,'wet food','pills','','shy','44 atalaya ter','2017-10-05','4153195777','umihui@gmail.com',94117,0);
+INSERT INTO `ownerProfile` VALUES (1,'12223434','bo',2,'wet food','','','shy','44 atalaya ter','2017-10-05','4153195997','umihui',94117,0),(2,'123455','kevin',2,'wet food','pills','','shy','44 atalaya ter','2017-10-05','4153195992','umihui@gmail.com',94117,0),(5,'12225634','john',2,'wet food','pills','','shy','44 atalaya ter','2017-10-05','4153195777','umihui@gmail.com',94117,0);
 INSERT INTO `ownerProfile` VALUES (3,'1310153075760130', 'Kevin Yeh','1','Same','','','shy','1990 S. Delaware San Mateo','2017-10-05','626-215-8079','revinyeh@gmail.com',94403,0);
 /*!40000 ALTER TABLE `ownerProfile` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -133,7 +133,7 @@ CREATE TABLE `sitterProfile` (
 
 LOCK TABLES `sitterProfile` WRITE;
 /*!40000 ALTER TABLE `sitterProfile` DISABLE KEYS */;
-INSERT INTO `sitterProfile` VALUES (1,'"2120264864"','victor','jkdshf','awesome',0,1,40,'day','2017-10-04','4153195297','victor@gmail.com','201 spear ter','94102',37.784923,-122.412517,9),(2,'123434','umi','jkdshf','awesome',1,1,30,'visit','2017-10-04','4153195997','umihui','44 atalaya ter','94117',37.783252,-122.405951,8);
+INSERT INTO `sitterProfile` VALUES (1,'"12345"','victor','jkdshf','awesome',0,1,40,'day','2017-10-04','4153195297','victor@gmail.com','201 spear ter','94102',37.784923,-122.412517,9),(2,'123434','umi','jkdshf','awesome',1,1,30,'visit','2017-10-04','4153195997','umihui','44 atalaya ter','94117',37.783252,-122.405951,8);
 /*!40000 ALTER TABLE `sitterProfile` ENABLE KEYS */;
 UNLOCK TABLES;
 

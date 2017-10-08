@@ -2,6 +2,8 @@ import React from 'react';
 import {get, post, validateInput} from '../ajaxHelper.js';
 import Dropzone from 'react-dropzone'
 import $ from 'jquery';
+import {validateInputs} from './validationHelper.js';
+
 
 class OwnerProfile extends React.Component {
   constructor(props) {

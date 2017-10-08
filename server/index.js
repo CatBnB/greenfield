@@ -81,6 +81,15 @@ app.post('/owner/sendtask', function(req, res) {
   });
 });
 
+app.post('/ownerprofile/create', function(req, res) {
+  var options = req.body;
+  console.log('SERVER',options)
+  dbUtil.insertOwnerProfile(options)
+    .then((result) => {
+    res.status(201).send('ok');
+  });
+});
+
 
 app.post('/sitter/accepttask', function(req, res) {
   var options = req.body;

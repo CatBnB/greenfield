@@ -52,14 +52,17 @@ class Headerbar extends React.Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-              { this.props.user === null ?
-                <div className="nav-link" onClick={this.props.pageState.bind(null,'SignUp')} >Sign-Up</div>
-                :
-                  <div className='row'>
-                    <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Profile')} >Profile</div> 
-                    <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Dashboard')} >Dashboard</div> 
-                  </div>
+              { this.props.auth === null || this.props.auth.status === 'unknown' ?
+                 <div></div>
+                : this.props.user === null ?
+                  <div className="nav-link" onClick={this.props.pageState.bind(null,'SignUp')} >Create Profile</div>
+                  :
+                    <div className='row'>
+                      <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Profile')} >Profile</div>
+                      <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Dashboard')} >Dashboard</div>
+                    </div>
               }
+
               </li>
               <li className="nav-item">
                 <Login setAuth={this.props.setAuth} setUser={this.props.setUser} />

@@ -51,25 +51,6 @@ class OwnerProfile extends React.Component {
     this.setState(update);
   }
 
-  // uploadFile(files) {
-  //   const image = files[0]
-  //   console.log('uploadFile: ',image);
-  //   $.ajax({
-  //     url: '/owner/image',
-  //     type: 'POST',
-  //     data: JSON.stringify(image),
-  //     dataType: 'multipart/form-data',
-  //     traditional : true,
-  //     success: function(data){
-  //       console.log('successed')
-  //     },
-  //     error: function(err){
-  //       console.log('error from owner image upload post request')
-  //     }
-  //   })
-  // }
-
-
   render() {
     return (
       <form onChange={this.handleChange} >
@@ -90,13 +71,13 @@ class OwnerProfile extends React.Component {
         <div className='container'>
           <div className="form-group form-inline">
            <div className='row'>
-              <div className="col.sm-2">
+              <div className="col-lg-2">
                 <label htmlFor="exampleInputEmail1" >Address:</label>
               </div>
-              <div className="col.sm-6">
+              <div className="col-lg-6">
                 <input id="address" type="text" className="form-control" placeholder="Address"></input>
               </div>
-              <div className="col.sm-4">
+              <div className="col-lg-4">
                 <input id="zipcode" type="text" className="form-control" placeholder="Zip Code"></input>
               </div>
             </div>

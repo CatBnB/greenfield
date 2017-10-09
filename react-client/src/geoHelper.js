@@ -16,6 +16,8 @@ export const getCoordinates = (address) => {
   return get(endpoint).then(data => formatGeoData(data));
 }
 
+// takes an input address (perfectly formatted or otherwise) and returns the
+// closest matching coordinates of the address in the format of [latitude, longitude]
 export const getCoordinatesFromInput = (input) => {
   return getAutocomplete(input).then(data => data.predictions[0].description)
                                .then(address => getCoordinates(address));

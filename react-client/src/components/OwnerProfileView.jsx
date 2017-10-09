@@ -2,6 +2,8 @@ import React from 'react';
 import {get, post, validateInput} from '../ajaxHelper.js';
 import Dropzone from 'react-dropzone'
 import $ from 'jquery';
+import {validateInputs} from '../validationHelper.js';
+
 
 class OwnerProfile extends React.Component {
   constructor(props) {
@@ -28,21 +30,22 @@ class OwnerProfile extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log('clicked');
-    let profileData = this.state;
-    profileData['fb_userId'] = this.props.auth.authResponse.userID;
-    // validateInput(this.state).then(data => post('/owner', data))
-    //                          .catch(err => console.log(err));
+    this.state['fb_userId'] = this.props.auth.authResponse.userID;
 
-    post('/ownerprofile/create', JSON.stringify(profileData))
-      .then((result)=> {
-        this.props.returnHomePage('HomePage');
-        get('/owner/' + this.props.auth.authResponse.userID)
-          .then(user => this.props.setUser(user))
-      });
+    validateInputs(this.state)
+      .then(data => {
+        post('/ownerprofile/create', JSON.stringify(data)).then(()=> {
+          get('/owner/' + this.props.auth.authResponse.userID).then(user => {
+            this.props.setUser(user)
+            this.props.returnHomePage('HomePage');
+          })
+        });
+      })
+      .catch(err => alert(err));
   }
 
   handleChange(e) {
-
+    console.log(this.state);
     var update = {};
     update[e.target.id] = e.target.value;
     this.setState(update);

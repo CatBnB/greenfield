@@ -45,6 +45,8 @@ class Headerbar extends React.Component {
   }
 
   render() {
+    console.log(this.props.auth);
+    console.log(this.props.user);
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">

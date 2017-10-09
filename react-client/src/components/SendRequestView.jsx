@@ -1,5 +1,6 @@
 import React from 'react';
 import {post}from '../ajaxHelper.js';
+import {validateDates} from '../validationHelper.js';
 // import DatePicker from 'DatePicker'
 
 class SendRequest extends React.Component {
@@ -15,20 +16,24 @@ class SendRequest extends React.Component {
   }
 
   sendRequest() {
-    if(this.props.auth){
-      let data = {
-        id: this.props.user.id,
-        'sitter_id': this.props.data.id,
-        startDate: this.state.startDate,
-        endDate: this.state.endDate,
-        message: this.state.ownerText
-      }
-      post('/owner/sendtask', JSON.stringify(data));
-      $('#exampleModal').modal('hide');
-    } else {
-      $('#exampleModal').modal('hide');
-      alert('You need to log in first!');
-    }
+    validateDates(this.state)
+      .then(state => {
+        if(this.props.auth){
+          let data = {
+            id: this.props.user.id,
+            'sitter_id': this.props.data.id,
+            startDate: state.startDate,
+            endDate: state.endDate,
+            message: state.ownerText
+          }
+          post('/owner/sendtask', JSON.stringify(data));
+          $('#exampleModal').modal('hide');
+        } else {
+          $('#exampleModal').modal('hide');
+          alert('You need to log in first!');
+        }
+      })
+      .catch(err => alert(err));
   }
 
   handleChange(event) {

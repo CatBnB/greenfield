@@ -43,12 +43,3 @@ export const patch = (endpoint, data) => {
     .fail(err => reject(err));
   });
 };
-
-export const validateInput = (data) => {
-  return new Promise(function(resolve, reject) {
-    for (var item in data) {
-      if (!item) reject('all fields must have data');
-    }
-    resolve(data);
-  });
-}

@@ -7,10 +7,11 @@ class OwnerDashView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      refresh: false,
       data: {},
       status: {
         onGoing: false,
-        finished: false,
+        finished: false
       },
       qty: {
         sent: 0,
@@ -23,6 +24,7 @@ class OwnerDashView extends React.Component {
       }
     }
     this.sync = this.sync.bind(this);
+    this.reRender = this.reRender.bind(this);
   }
 
   componentWillMount() {
@@ -37,6 +39,8 @@ class OwnerDashView extends React.Component {
       this.sync();
     });
   }
+
+
 
   sync() {
     var qty = {
@@ -67,10 +71,22 @@ class OwnerDashView extends React.Component {
     })
   }
 
+  reRender(){
+    get('/owner/dashboard/' + this.props.owner.id)
+      .then(data => {
+        this.setState({
+          data: data,
+          status:{
+            onGoing: false,
+            finished: false
+          }
+        })
+      })
+      .then( ()=>{
+        this.sync();
+      });
 
-  // cancleRequest(){
-  //  var sentItem = this.state.sent.slice();
-  // }
+  }
 
   render() {
     return (
@@ -91,7 +107,7 @@ class OwnerDashView extends React.Component {
                 this.state.data.filter(ele => ele.status === 'sent' || ele.status === 'accepted' || ele.status === 'confirmed' ||ele.status === 'ready' ).map((ele, index) => {
                   return (
                     <div className='Owner-dash-view-data' key={index}>
-                      <OwnerDashEntryOngoing task={ele} keys={index}/>
+                      <OwnerDashEntryOngoing task={ele} keys={index} reRender={this.reRender}/>
                     </div>
                   )
                 })
@@ -109,7 +125,7 @@ class OwnerDashView extends React.Component {
           </div>
           {
             this.state.status.finished ?
-                this.state.data.filter(ele => ele.status === 'cancled' || ele.status === 'finished' ).map((ele, index) => {
+                this.state.data.filter(ele => ele.status === 'cancelled' || ele.status === 'finished' ).map((ele, index) => {
                   return (
                     <div className='Owner-dash-view-data' key={index}>
                       {<OwnerDashEntryFinished task={ele} keys={index} />}

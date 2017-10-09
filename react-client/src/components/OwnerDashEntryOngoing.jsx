@@ -4,9 +4,7 @@ import {post} from '../ajaxHelper.js';
 class OwnerDashEntryOngoing extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
 
-    }
     this.handleCancel = this.handleCancel.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleReject = this.handleReject.bind(this);
@@ -14,9 +12,11 @@ class OwnerDashEntryOngoing extends React.Component {
 
   handleCancel(){
     let data = {id: this.props.task.task_id}
-    post('/task/cancel',JSON.stringify(data));
+    post('/task/cancel',JSON.stringify(data))
+      .then(() => this.props.reRender());
+
   }
-  
+
   handleConfirm(){
     let data = {id: this.props.task.task_id}
     post('/task/confirm',JSON.stringify(data));

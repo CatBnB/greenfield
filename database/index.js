@@ -19,7 +19,7 @@ var getSitters = function() {
 }
 
 var getSitterReviews = function(sitter_id) {
-    let q = 'SELECT * FROM Reviews where sitter_id=' + sitter_id;
+    let q = 'SELECT ownerProfile.name,review,rating FROM Reviews JOIN ownerProfile On Reviews.owner_id=ownerProfile.id WHERE sitter_id=' + sitter_id;
     return db.query(q).then(results => results[0]);
 };
 

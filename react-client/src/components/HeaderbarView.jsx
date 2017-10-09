@@ -58,20 +58,21 @@ class Headerbar extends React.Component {
                   <div className="nav-link" onClick={this.props.pageState.bind(null,'SignUp')} >Create Profile</div>
                   :
                     <div className='row'>
-                      <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Profile')} >Profile</div>
-                      <div className="nav-link col-lg-6" onClick={this.props.pageState.bind(null,'Dashboard')} >Dashboard</div>
+                      <div className="nav-link col-lg-2"></div>
+                      <div className="nav-link col-lg-5" onClick={this.props.pageState.bind(null,'Profile')} >Profile</div>
+                      <div className="nav-link col-lg-5" onClick={this.props.pageState.bind(null,'Dashboard')} >Dashboard</div>
                     </div>
               }
 
               </li>
-              <li className="nav-item">
-                <Login setAuth={this.props.setAuth} setUser={this.props.setUser} />
-              </li>
             </ul>
             <form onSubmit={this.handleSubmit} className="form-inline my-2 my-lg-0">
               <input ref={x => { this.searchBox = x; }} className="form-control mr-sm-2" type="text" placeholder="Input Your Address" aria-label="Search"></input>
-              {/* <button onClick={this.handleSubmit} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
+               {/* <button onClick={this.handleSubmit} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
             </form>
+              <div className="form-inline ">
+                <Login setAuth={this.props.setAuth} setUser={this.props.setUser} />
+              </div>
           </div>
         </div>
       </nav>

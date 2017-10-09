@@ -45,9 +45,17 @@ var insertOwnerProfile = function(options) {
   var values = [options.fb_userId,options.name,options.numOfCats,options.food,options.medical,
                 options.personality,options.other,options.address,now,options.phone,
                 options.email,options.zipcode];
-								console.log(values);
   return db.query(q, values);
 };
+
+var updateOwnerProfile = function(options) {
+	console.log('Update',options);
+	var q = 'UPDATE ownerProfile Set numOfCats=?,food=?,medical=?,personality=?,other=?,address=?, zipcode=?,phone=? WHERE id=?';
+  var values = [options.numOfCats,options.food,options.medical,
+                options.personality,options.other,options.address,
+                options.zipcode,options.phone, options.id];
+  return db.query(q, values);
+}
 
 var insertSitterProfile = function(options) {
   var now = new Date();
@@ -56,10 +64,6 @@ var insertSitterProfile = function(options) {
                 options.comeIn,options.boarding,options.price,options.unit,now,
                 options.phone,options.email,options.address,options.zipcode,options.latitude,options.longitude];
   return db.query(q, values);
-};
-
-var updateOwnerProfile = function(fb_userId,cd) {
-  //when owner want to change profile
 };
 
 var getOwner = function(fb_userId) {
@@ -121,6 +125,7 @@ var insertReview = function(options) {
 	return db.query(q,values);
 }
 module.exports = {
+	updateOwnerProfile,
   getSitters,
   getSitterReviews,
   getOwner,

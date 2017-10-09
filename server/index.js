@@ -90,6 +90,15 @@ app.post('/ownerprofile/create', function(req, res) {
   });
 });
 
+app.post('/ownerprofile/UPDATE', function(req, res) {
+  var options = req.body;
+  console.log('SERVER',options)
+  dbUtil.updateOwnerProfile(options)
+    .then((result) => {
+    res.status(201).send('update');
+  });
+});
+
 
 app.post('/sitter/accepttask', function(req, res) {
   var options = req.body;

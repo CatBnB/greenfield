@@ -113,7 +113,7 @@ class OwnerProfile extends React.Component {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleTextarea">Feed:</label>
+          <label htmlFor="exampleTextarea">Food:</label>
           <textarea id="food" className="form-control" rows="1"></textarea>
         </div>
           <div className="form-group">

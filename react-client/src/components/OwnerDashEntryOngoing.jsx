@@ -1,14 +1,23 @@
 import React from 'react';
+import {post} from '../ajaxHelper.js';
 
 class OwnerDashEntryOngoing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
- 
+
     }
+    this.handleCancel = this.handleCancel.bind(this);
+  }
+
+  handleCancel(){
+    console.log('cancel');
+    let data = {id: this.props.task.task_id}
+    post('/task/cancel',JSON.stringify(data));
   }
 
   render() {
+      console.log('DASH',this.props.task);
     return (
     	<div>
 			  <div className='onwer-dash-entry'>
@@ -23,16 +32,16 @@ class OwnerDashEntryOngoing extends React.Component {
 					      	<h5>Task Status: </h5>
 					      </div>
 					      <div className='col-md-7'>
-						      <small> 
+						      <small>
 							      {
-							      	this.props.task.status === "sent" ? 
-							      		"Request sent to sitter already and waiting sitter to response" 
+							      	this.props.task.status === "sent" ?
+							      		"Request sent to sitter already and waiting sitter to response"
 							      		: this.props.task.status === "confirmed" ?
 							      		"The sitter accpet the request, would you accept it?"
 							      			: this.props.task.status === "paid" ?
 							      		  "Paid Request & Sitter is ready to take care your cats"
 							      		  	: "Request is finished, ready to leave commate and rate?"
-							      } 
+							      }
 						      </small>
 						    </div>
 					    </div>
@@ -42,16 +51,16 @@ class OwnerDashEntryOngoing extends React.Component {
 			        Sitter name: {this.props.task.sitter_name}
 			        </div>
 			        <div className ="col-md-4 col-md-offset-3">
-			         {	
+			         {
 			         	this.props.task.status === 'confirmed' ?
-		          		'Offering for Total Fee: $ ' + this.props.task.finalPrice 
+		          		'Offering for Total Fee: $ ' + this.props.task.finalPrice
 		            		: this.props.task.status === 'paid' || this.props.task.status === 'ready' ?
-		            			'Paid Fee: $' + this.props.task.finalPrice 
-		            			: 'Request Rate: $ ' + this.props.task.finalPrice + ' / Day'
+		            			'Paid Fee: $' + this.props.task.finalPrice
+		            			: 'Request Rate: $ ' + this.props.task.price + ' / ' +this.props.task.unit
 			          }
 			        </div>
 			        <div className='col-md-5 col-md-offset-3'>
-			         Request Created At: {this.props.task.createdAt.slice(0,10)} 
+			         Request Created At: {this.props.task.createdAt.slice(0,10)}
 			        </div>
 			      </div>
 			      <div className='onwer-dash-entry-date'>
@@ -62,7 +71,7 @@ class OwnerDashEntryOngoing extends React.Component {
 			            <div>Ending Data: {this.props.task.endDate.slice(0,10)} </div>
 			          </div>
 			          <div className ="col-md-4 col-md-offset-3">
-			          	{	
+			          	{
 			          		this.props.task.status === 'ready' ?
 			          		  	<div className="form-group">
 								          <label htmlFor="exampleTextarea">Commands:</label>
@@ -72,7 +81,7 @@ class OwnerDashEntryOngoing extends React.Component {
 			          	}
 			          </div>
 			          <div className='col-md-2 col-md-offset-3'>
-			          {	
+			          {
 			          	this.props.task.status === 'ready' ?
 					        <div className="form-group">
 					          <label htmlFor="exampleSelect1">Rates:</label>
@@ -101,17 +110,21 @@ class OwnerDashEntryOngoing extends React.Component {
 	            	<div className ="col-md-3 col-md-offset-3">
 	            	</div>
 	            	<div className ="col-md-3 col-md-offset-3">
-		            	{	
+		            	{
 			          		this.props.task.status === 'confirmed' ?
 				          		<button type="button" className="btn btn-primary">Accept and Pay</button>
 				          		: <div></div>
-		          		}	
+		          		}
 	            	</div>
 	            	<div className ="col-md-3 col-md-offset-3">
 		            	{	this.props.task.status === 'confirmed' ?
 		          		<button type="button" className="btn btn-danger">Reject</button>
 		            		: this.props.task.status === 'sent' ?
+<<<<<<< HEAD
 		            		<button type="button" className="btn btn-danger">Cancel</button>
+=======
+		            		<button type="button" className="btn btn-danger" onClick={this.handleCancel}>Cancel</button>
+>>>>>>> make cancel button work
 		            			: this.props.task.status === 'paid' ?
 		            			<button type="button" className="btn btn-danger">Cancel & Refund</button>
 		            				: <button type="button" className="btn btn-primary">Summit</button>

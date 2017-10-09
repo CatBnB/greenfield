@@ -110,7 +110,7 @@ var confirmTask = function(id) {
 };
 
 var getOwnerDashboard = function(id) {
-  var q = 'SELECT sitterProfile.name as sitter_name, status,startDate,endDate,tasksList.createdAt,finalPrice FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
+  var q = 'SELECT sitterProfile.name as sitter_name, price, unit, status,startDate,endDate,tasksList.createdAt,tasksList.id as task_id, finalPrice FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
   return db.query(q);
 };
 

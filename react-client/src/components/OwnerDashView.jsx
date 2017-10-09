@@ -18,14 +18,13 @@ class OwnerDashView extends React.Component {
         ready: 0,
         finished: 0,
         rejected: 0,
-        cancled: 0,
+        cancelled: 0,
       }
     }
     this.sync = this.sync.bind(this);
   }
-  
+
   componentWillMount() {
-    console.log('ownerDashView');
     console.log('/owner/dashboard/' + this.props.owner.id)
     get('/owner/dashboard/' + this.props.owner.id)
     .then(data => {
@@ -35,7 +34,7 @@ class OwnerDashView extends React.Component {
     })
     .then( ()=>{
       this.sync();
-    });  
+    });
   }
 
   sync() {
@@ -46,7 +45,7 @@ class OwnerDashView extends React.Component {
         ready: 0,
         finished: 0,
         rejected: 0,
-        cancled: 0,
+        cancelled: 0,
       };
     this.state.data.forEach(ele => qty[ele.status]++)
     this.setState({ qty: qty })
@@ -71,7 +70,7 @@ class OwnerDashView extends React.Component {
   // cancleRequest(){
   //  var sentItem = this.state.sent.slice();
   // }
-  
+
   render() {
     return (
       <div >
@@ -86,14 +85,14 @@ class OwnerDashView extends React.Component {
               <h3>You have {this.state.qty.sent + this.state.qty.confirmed + this.state.qty.ready + this.state.qty.paid} tasks</h3>
             </div>
           </div>
-          { 
+          {
             this.state.status.onGoing ?
                 this.state.data.filter(ele => ele.status === 'sent' || ele.status === 'confirmed' || ele.status === 'paid' ||ele.status === 'ready' ).map((ele, index) => {
                   return (
                     <div className='Owner-dash-view-data' key={index}>
                       <OwnerDashEntryOngoing task={ele} keys={index}/>
                     </div>
-                  )  
+                  )
                 })
               :
               <div></div>
@@ -104,22 +103,22 @@ class OwnerDashView extends React.Component {
               <h2>Finished Tasks</h2>
             </div>
             <div className='col-lg-4'>
-              <h3>You have {this.state.qty.cancled + this.state.qty.finished } tasks</h3>
+              <h3>You have {this.state.qty.cancelled + this.state.qty.finished } tasks</h3>
             </div>
           </div>
-          { 
+          {
             this.state.status.finished ?
                 this.state.data.filter(ele => ele.status === 'cancled' || ele.status === 'finished' ).map((ele, index) => {
                   return (
                     <div className='Owner-dash-view-data' key={index}>
                       {<OwnerDashEntryFinished task={ele} keys={index} />}
                     </div>
-                  )  
+                  )
                 })
               :
               <div></div>
           }
-        </div>         
+        </div>
       </div>
     )
   }

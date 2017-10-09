@@ -117,11 +117,11 @@ class OwnerProfile extends React.Component {
           <textarea id="food" className="form-control" rows="1"></textarea>
         </div>
           <div className="form-group">
-          <label htmlFor="exampleTextarea">Medical::</label>
+          <label htmlFor="exampleTextarea">Medical:</label>
           <textarea id="medical" className="form-control" rows="1"></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleSelect2">Psesonality:</label>
+          <label htmlFor="exampleSelect2">Personality:</label>
           <select id="personality" className="form-control">
             <option>Grumpy</option>
             <option>Quiet</option>

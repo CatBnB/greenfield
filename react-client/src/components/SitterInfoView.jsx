@@ -18,13 +18,20 @@ class SittersInfo extends React.Component {
     this.getReviews();
   }
 
-  getReviews() {
+  componentWillUpdate() {
     get('/reviews/' + this.props.data.id)
+    .then(reviews => this.state.reviews = reviews);
+  }
+
+  getReviews() {
+    if (this.props.data) {
+      get('/reviews/' + this.props.data.id)
       .then(reviews => this.setState({reviews: reviews}));
+    }
   }
 
   handleClick() {
-    this.props.changeView();
+    this.props.toggleView();
   }
 
   render() {

@@ -21,8 +21,8 @@ for (var i = 10; i < 510; i++) {
   var photo = '00'+ Math.ceil(Math.random() * 9) + '.jpeg';
   var price = randomTo(100);
   var address = randomTo(1000) + '' + name + ' st';
-  var latitude = (37747929 + randomTo(59512))/1000000
-  var longitude = -1 * (122387327 + randomTo(126362))/1000000;
+  var latitude = (Math.random() * 0.059512) + 37.747929
+  var longitude = -1 * ((Math.random() * 0.126362) + 122.387327);
   var rating = randomTo(11);
   var sitter = `(${sitter_id}, '${fb_userId}','${name}','${photo}','awesome', 0, 1, ${price}, 'day', '2017-10-04', '0000000000','${name}@gmail.com','${address}','94102', ${latitude}, ${longitude}, ${rating})`
 

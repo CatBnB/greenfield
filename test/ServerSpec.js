@@ -3,8 +3,8 @@ var mysql = require('mysql');
 var request = require('request');
 var httpMocks = require('node-mocks-http');
 
-var app = require('../server/app.js');
-var schema = require('../server/db/config.js');
+var app = require('../server/index.js');
+var schema = require('../database/index.js');
 var port = 4568;
 
 /************************************************************/

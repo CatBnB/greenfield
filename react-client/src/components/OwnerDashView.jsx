@@ -7,15 +7,14 @@ class OwnerDashView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      refresh: false,
       data: {},
       status: {
         onGoing: false,
-        finished: false
+        finished: false,
       },
       qty: {
         sent: 0,
-        accepted: 0,
+        accepted:0,
         confirmed: 0,
         ready: 0,
         finished: 0,
@@ -26,9 +25,8 @@ class OwnerDashView extends React.Component {
     this.sync = this.sync.bind(this);
     this.reRender = this.reRender.bind(this);
   }
-
+  
   componentWillMount() {
-    console.log('/owner/dashboard/' + this.props.owner.id)
     get('/owner/dashboard/' + this.props.owner.id)
     .then(data => {
       this.setState({
@@ -37,16 +35,14 @@ class OwnerDashView extends React.Component {
     })
     .then( ()=>{
       this.sync();
-    });
+    });  
   }
-
-
 
   sync() {
     var qty = {
         sent: 0,
-        accepted: 0,
         confirmed: 0,
+        accepted: 0,
         ready: 0,
         finished: 0,
         rejected: 0,
@@ -86,30 +82,30 @@ class OwnerDashView extends React.Component {
         this.sync();
       });
 
-  }
-
+ }
+  
   render() {
     return (
-      <div >
-        <h1> Dashboard: </h1>
+      <div className="owner-dash-inbox">
+        <h2> Dashboard: </h2>
         <hr></hr>
         <div className='Owner-dash-view'>
           <div className='row' onClick={this.click.bind(this,'onGoing')}>
             <div className='col-lg-8'>
-              <h2>On-Going Tasks</h2>
+              <h3>On-Going Tasks</h3>
             </div>
             <div className='col-lg-4'>
-              <h3>You have {this.state.qty.sent + this.state.qty.accepted + this.state.qty.ready + this.state.qty.confirmed} tasks</h3>
+              <h3>You have {this.state.qty.sent + this.state.qty.confirmed + this.state.qty.ready + this.state.qty.accepted} tasks</h3>
             </div>
           </div>
-          {
+          { 
             this.state.status.onGoing ?
-                this.state.data.filter(ele => ele.status === 'sent' || ele.status === 'accepted' || ele.status === 'confirmed' ||ele.status === 'ready' ).map((ele, index) => {
+                this.state.data.filter(ele => ele.status === 'sent' || ele.status === 'confirmed' || ele.status === 'accepted' ||ele.status === 'ready' ).map((ele, index) => {
                   return (
                     <div className='Owner-dash-view-data' key={index}>
                       <OwnerDashEntryOngoing task={ele} keys={index} reRender={this.reRender}/>
                     </div>
-                  )
+                  )  
                 })
               :
               <div></div>
@@ -117,25 +113,26 @@ class OwnerDashView extends React.Component {
           <hr></hr>
           <div className='row' onClick={this.click.bind(this,'finished')}>
             <div className='col-lg-8'>
-              <h2>Finished Tasks</h2>
+              <h3>Finished Tasks</h3>
             </div>
             <div className='col-lg-4'>
               <h3>You have {this.state.qty.cancelled + this.state.qty.finished + this.state.qty.rejected } tasks</h3>
             </div>
           </div>
-          {
+          { 
             this.state.status.finished ?
                 this.state.data.filter(ele => ele.status === 'cancelled' || ele.status === 'finished' || ele.status === 'rejected').map((ele, index) => {
+
                   return (
                     <div className='Owner-dash-view-data' key={index}>
-                      {<OwnerDashEntryFinished task={ele} keys={index} />}
+                      {<OwnerDashEntryFinished task={ele} keys={index} reRender={this.reRender}/>}
                     </div>
-                  )
+                  )  
                 })
               :
               <div></div>
           }
-        </div>
+        </div>         
       </div>
     )
   }

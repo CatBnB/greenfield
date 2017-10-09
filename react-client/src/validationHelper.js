@@ -18,11 +18,18 @@ const validatePhone = (input) => {
   let criteria = new RegExp(/^[0-9]{10}$/);
   if (input && input.search(criteria) > -1) return input;
   else return null;
-  // let criteria = new RegExp(/^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{1}$/);
-  // if (input && input.search(criteria) > -1) return input;
-  // else return null;
   // else throw new Error('invalid phone number');
 };
+
+export const validateDates = (data) => {
+  return new Promise(function(resolve, reject) {
+      if (!data.startDate || !data.endDate) reject('Please fill in start date and end date');
+      var start = new Date(data.startDate),
+          end = new Date(data.endDate);
+      if (end >= start) resolve(data);
+      else reject('Ending date must be on the same day or later than the starting date!');
+  })
+}
 
 export const validateInputs = (data) => {
   return new Promise(function(resolve, reject) {

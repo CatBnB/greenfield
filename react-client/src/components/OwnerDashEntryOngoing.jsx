@@ -120,11 +120,7 @@ class OwnerDashEntryOngoing extends React.Component {
 		            	{	this.props.task.status === 'confirmed' ?
 		          		<button type="button" className="btn btn-danger">Reject</button>
 		            		: this.props.task.status === 'sent' ?
-<<<<<<< HEAD
-		            		<button type="button" className="btn btn-danger">Cancel</button>
-=======
 		            		<button type="button" className="btn btn-danger" onClick={this.handleCancel}>Cancel</button>
->>>>>>> make cancel button work
 		            			: this.props.task.status === 'paid' ?
 		            			<button type="button" className="btn btn-danger">Cancel & Refund</button>
 		            				: <button type="button" className="btn btn-primary">Summit</button>

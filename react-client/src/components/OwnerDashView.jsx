@@ -14,6 +14,7 @@ class OwnerDashView extends React.Component {
       },
       qty: {
         sent: 0,
+        accepted: 0,
         confirmed: 0,
         ready: 0,
         finished: 0,
@@ -40,8 +41,8 @@ class OwnerDashView extends React.Component {
   sync() {
     var qty = {
         sent: 0,
+        accepted: 0,
         confirmed: 0,
-        paid: 0,
         ready: 0,
         finished: 0,
         rejected: 0,
@@ -82,12 +83,12 @@ class OwnerDashView extends React.Component {
               <h2>On-Going Tasks</h2>
             </div>
             <div className='col-lg-4'>
-              <h3>You have {this.state.qty.sent + this.state.qty.confirmed + this.state.qty.ready + this.state.qty.paid} tasks</h3>
+              <h3>You have {this.state.qty.sent + this.state.qty.accepted + this.state.qty.ready + this.state.qty.confirmed} tasks</h3>
             </div>
           </div>
           {
             this.state.status.onGoing ?
-                this.state.data.filter(ele => ele.status === 'sent' || ele.status === 'confirmed' || ele.status === 'paid' ||ele.status === 'ready' ).map((ele, index) => {
+                this.state.data.filter(ele => ele.status === 'sent' || ele.status === 'accepted' || ele.status === 'confirmed' ||ele.status === 'ready' ).map((ele, index) => {
                   return (
                     <div className='Owner-dash-view-data' key={index}>
                       <OwnerDashEntryOngoing task={ele} keys={index}/>

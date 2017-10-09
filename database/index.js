@@ -109,6 +109,11 @@ var confirmTask = function(id) {
   return db.query(q);
 };
 
+var rejectTask = function(id) {
+  var q = 'UPDATE tasksList SET status="rejected" WHERE id=' + id;
+  return db.query(q);
+};
+
 var getOwnerDashboard = function(id) {
   var q = 'SELECT sitterProfile.name as sitter_name, price, unit, status,startDate,endDate,tasksList.createdAt,tasksList.id as task_id, finalPrice FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
   return db.query(q);
@@ -125,6 +130,7 @@ var insertReview = function(options) {
 	return db.query(q,values);
 }
 module.exports = {
+	rejectTask,
 	updateOwnerProfile,
   getSitters,
   getSitterReviews,

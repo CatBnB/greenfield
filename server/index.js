@@ -116,6 +116,14 @@ app.post('/task/cancel', function(req, res) {
   })
 });
 
+app.post('/task/reject', function(req, res) {
+  var options = req.body;
+  dbUtil.rejectTask(options.id)
+    .then((result) => {
+    res.status(201).send('cancel');
+  })
+});
+
 app.post('/task/confirm', upload.single('avatar'), function(req, res) {
   var options = req.body;
   dbUtil.confirmTask(options.id)

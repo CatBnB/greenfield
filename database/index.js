@@ -1,5 +1,5 @@
-/*
-
+/* this file has all the helper functions for database, use 'mysql' and
+   'mysql-promise', dq.query is promise function.
 */
 
 var mysql = require('mysql');
@@ -77,12 +77,6 @@ var getOwner = function(fb_userId) {
 	});
 }
 
-//not finished
-var getOwnerDetail = function(owner_id) {
-  var q = 'SELECT * FROM ownerProfile WHERE id =' + owner_id;
-  return db.query(q);
-};
-
 var createTask = function(options) {
   var now = new Date();
   var q = 'INSERT INTO tasksList(owner_id, ownerMessage, startDate, endDate, status, sitter_id,createdAt) VALUES (?,?,?,?,?,?,?)';
@@ -129,6 +123,14 @@ var insertReview = function(options) {
 	var values = [options.review,options.owner_id,options.sitter_id, options.id, option.rating];
 	return db.query(q,values);
 }
+
+
+//made for sitter part
+var getOwnerDetail = function(owner_id) {
+	var q = 'SELECT * FROM ownerProfile WHERE id =' + owner_id;
+	return db.query(q);
+};
+
 module.exports = {
 	rejectTask,
 	updateOwnerProfile,

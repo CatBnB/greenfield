@@ -19,12 +19,14 @@ class OwnerDashEntryOngoing extends React.Component {
 
   handleConfirm(){
     let data = {id: this.props.task.task_id}
-    post('/task/confirm',JSON.stringify(data));
+    post('/task/confirm',JSON.stringify(data))
+      .then(() => this.props.reRender());
   }
 
   handleReject(){
     let data = {id: this.props.task.task_id}
-    post('/task/reject',JSON.stringify(data));
+    post('/task/reject',JSON.stringify(data))
+      .then(() => this.props.reRender());
   }
 
   render() {

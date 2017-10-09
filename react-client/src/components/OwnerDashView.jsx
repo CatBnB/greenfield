@@ -120,12 +120,12 @@ class OwnerDashView extends React.Component {
               <h2>Finished Tasks</h2>
             </div>
             <div className='col-lg-4'>
-              <h3>You have {this.state.qty.cancelled + this.state.qty.finished } tasks</h3>
+              <h3>You have {this.state.qty.cancelled + this.state.qty.finished + this.state.qty.rejected } tasks</h3>
             </div>
           </div>
           {
             this.state.status.finished ?
-                this.state.data.filter(ele => ele.status === 'cancelled' || ele.status === 'finished' ).map((ele, index) => {
+                this.state.data.filter(ele => ele.status === 'cancelled' || ele.status === 'finished' || ele.status === 'rejected').map((ele, index) => {
                   return (
                     <div className='Owner-dash-view-data' key={index}>
                       {<OwnerDashEntryFinished task={ele} keys={index} />}

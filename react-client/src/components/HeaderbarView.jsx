@@ -10,6 +10,7 @@ class Headerbar extends React.Component {
   }
 
   componentWillUpdate() {
+    // careful of timing issue, searchbox must be rendered after map completes loading
     this.initializeAutocomplete(this.props.map);
   }
 
@@ -18,6 +19,7 @@ class Headerbar extends React.Component {
   }
 
   initializeAutocomplete(map) {
+    if (!map) return;
     var autocomplete = new google.maps.places.Autocomplete(this.searchBox);
     var infoWindow = new google.maps.InfoWindow();
 

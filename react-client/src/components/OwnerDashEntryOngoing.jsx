@@ -8,12 +8,23 @@ class OwnerDashEntryOngoing extends React.Component {
 
     }
     this.handleCancel = this.handleCancel.bind(this);
+    this.handleConfirm = this.handleConfirm.bind(this);
+    this.handleReject = this.handleReject.bind(this);
   }
 
   handleCancel(){
-    console.log('cancel');
     let data = {id: this.props.task.task_id}
     post('/task/cancel',JSON.stringify(data));
+  }
+  
+  handleConfirm(){
+    let data = {id: this.props.task.task_id}
+    post('/task/confirm',JSON.stringify(data));
+  }
+
+  handleReject(){
+    let data = {id: this.props.task.task_id}
+    post('/task/reject',JSON.stringify(data));
   }
 
   render() {
@@ -111,18 +122,18 @@ class OwnerDashEntryOngoing extends React.Component {
 	            	</div>
 	            	<div className ="col-md-3 col-md-offset-3">
 		            	{
-			          		this.props.task.status === 'confirmed' ?
-				          		<button type="button" className="btn btn-primary">Accept and Pay</button>
+			          		this.props.task.status === 'accepted' ?
+				          		<button type="button" className="btn btn-primary" onClick={this.handleConfirm}>Accept and Pay</button>
 				          		: <div></div>
 		          		}
 	            	</div>
 	            	<div className ="col-md-3 col-md-offset-3">
-		            	{	this.props.task.status === 'confirmed' ?
-		          		<button type="button" className="btn btn-danger">Reject</button>
+		            	{	this.props.task.status === 'accepted' ?
+		          		<button type="button" className="btn btn-danger" onClick={this.handleReject}>Reject</button>
 		            		: this.props.task.status === 'sent' ?
 		            		<button type="button" className="btn btn-danger" onClick={this.handleCancel}>Cancel</button>
-		            			: this.props.task.status === 'paid' ?
-		            			<button type="button" className="btn btn-danger">Cancel & Refund</button>
+		            			: this.props.task.status === 'confirmed' ?
+		            			<button type="button" className="btn btn-danger" onClick={this.handleCancel}>Cancel & Refund</button>
 		            				: <button type="button" className="btn btn-primary">Summit</button>
 		          		}
 	            	</div>

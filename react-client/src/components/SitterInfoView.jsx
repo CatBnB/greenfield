@@ -41,7 +41,7 @@ class SittersInfo extends React.Component {
                     Name: {this.props.data.name}
                   </div>
                   <div className="col-lg-3">
-                    Rate: $50/Day
+                    Rate: ${this.props.data.price}/Day
                   </div>
                 </div>
                 <div className='row'>
@@ -60,7 +60,7 @@ class SittersInfo extends React.Component {
                 <div className="sitter-info-picture">
                   <div className='row'>
                     <div className="col-lg-4">
-                      <img className="media-object" height="120" width="160" src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" />
+                      <img className="media-object" height="120" width="160" src={this.props.data.photo} />
                     </div>
                     <div className="col-lg-4">
                       <img className="media-object" height="120" width="160" src="https://assets3.thrillist.com/v1/image/2642224/size/tmg-article_tall.jpg" alt="" />

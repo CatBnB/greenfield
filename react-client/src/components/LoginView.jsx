@@ -21,7 +21,7 @@ class Login extends React.Component {
         if(response.status === 'connected'){
           get('/owner/' + response.authResponse.userID)
             .then(user => context.props.setUser(user))
-            .catch(err => console.log('login',err));
+            .catch(err => console.log('login', err));
         }else if(response === 'not_authorized'){
           console.log('not autorized')
         }else{

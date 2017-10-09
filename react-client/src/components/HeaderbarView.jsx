@@ -28,12 +28,9 @@ class Headerbar extends React.Component {
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
       infoWindow.close();
       var place = autocomplete.getPlace();
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
-      } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(8);
-      }
+      map.setCenter(place.geometry.location);
+      map.setZoom(15);
+
       marker.setPosition(place.geometry.location);
       infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');
       infoWindow.open(map, marker);
@@ -45,8 +42,6 @@ class Headerbar extends React.Component {
   }
 
   render() {
-    console.log(this.props.auth);
-    console.log(this.props.user);
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">

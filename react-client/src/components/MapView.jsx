@@ -24,7 +24,7 @@ class Map extends React.Component {
   componentDidMount() {
     var mapOptions = {
       center: new google.maps.LatLng(37.7837, -122.4089),
-      zoom: 15,
+      zoom: 14,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(this.mapContainer, mapOptions);
@@ -75,6 +75,11 @@ class Map extends React.Component {
     this.setState({selected: index}, () => {
       this.setState({sitterClicked: !this.state.sitterClicked});
       this.state.markers[index].setIcon(this.selectedIcon);
+      this.props.map.setCenter(new google.maps.LatLng(
+        this.state.sitters[index].latitude,
+        this.state.sitters[index].longitude)
+      );
+      this.props.map.setZoom(15);
     })
   }
 

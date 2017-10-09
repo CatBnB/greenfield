@@ -45,9 +45,17 @@ var insertOwnerProfile = function(options) {
   var values = [options.fb_userId,options.name,options.numOfCats,options.food,options.medical,
                 options.personality,options.other,options.address,now,options.phone,
                 options.email,options.zipcode];
-								console.log(values);
   return db.query(q, values);
 };
+
+var updateOwnerProfile = function(options) {
+	console.log('Update',options);
+	var q = 'UPDATE ownerProfile Set numOfCats=?,food=?,medical=?,personality=?,other=?,address=?, zipcode=?,phone=? WHERE id=?';
+  var values = [options.numOfCats,options.food,options.medical,
+                options.personality,options.other,options.address,
+                options.zipcode,options.phone, options.id];
+  return db.query(q, values);
+}
 
 var insertSitterProfile = function(options) {
   var now = new Date();
@@ -56,10 +64,6 @@ var insertSitterProfile = function(options) {
                 options.comeIn,options.boarding,options.price,options.unit,now,
                 options.phone,options.email,options.address,options.zipcode,options.latitude,options.longitude];
   return db.query(q, values);
-};
-
-var updateOwnerProfile = function(fb_userId,cd) {
-  //when owner want to change profile
 };
 
 var getOwner = function(fb_userId) {
@@ -105,8 +109,13 @@ var confirmTask = function(id) {
   return db.query(q);
 };
 
+var rejectTask = function(id) {
+  var q = 'UPDATE tasksList SET status="rejected" WHERE id=' + id;
+  return db.query(q);
+};
+
 var getOwnerDashboard = function(id) {
-  var q = 'SELECT sitterProfile.name as sitter_name, status,startDate,endDate,tasksList.createdAt,finalPrice FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
+  var q = 'SELECT sitterProfile.name as sitter_name, price, unit, status,startDate,endDate,tasksList.createdAt,tasksList.id as task_id, finalPrice FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
   return db.query(q);
 };
 
@@ -115,7 +124,14 @@ var getSitterDashboard = function(id) {
   return db.query(q);
 };
 
+var insertReview = function(options) {
+	var q = 'INSERT INTO reviews VALUES (null, ?,?,?,?,?)';
+	var values = [options.review,options.owner_id,options.sitter_id, options.id, option.rating];
+	return db.query(q,values);
+}
 module.exports = {
+	rejectTask,
+	updateOwnerProfile,
   getSitters,
   getSitterReviews,
   getOwner,

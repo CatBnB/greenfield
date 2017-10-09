@@ -4,7 +4,7 @@ class OwnerDashEntryFinished extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
- 
+
     }
   }
 
@@ -23,7 +23,7 @@ class OwnerDashEntryFinished extends React.Component {
 					      	<h5>Task Status: </h5>
 					      </div>
 					      <div className='col-md-7'>
-						      <small> 
+						      <small>
 							      Finished Request
 						      </small>
 						    </div>

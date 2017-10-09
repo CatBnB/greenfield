@@ -71,7 +71,7 @@ class App extends React.Component {
               : this.state.pageState === 'Profile' ?
                 (
                   <div>
-                    <OwnerProfileRevise user={this.state.user}/>
+                    <OwnerProfileRevise user={this.state.user} returnHomePage={this.navClick.bind(this)}/>
                   </div>
                 )
                 : this.state.pageState === 'Dashboard' ?

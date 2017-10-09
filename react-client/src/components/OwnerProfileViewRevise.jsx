@@ -7,32 +7,32 @@ class OwnerProfileRevise extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: null,
-      numOfCats: null,
-      food: null,
-      medical: null,
-      personality: null,
-      other: null,
-      address: null,
-      zipcode: null,
-      phone: null,
-      email: null
+      numOfCats: this.props.user.numOfCats,
+      food: this.props.user.food,
+      medical: this.props.user.medical,
+      personality: this.props.user.personality,
+      other: this.props.user.other,
+      address: this.props.user.address,
+      zipcode: this.props.user.zipcode,
+      phone: this.props.user.phone
     }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit(e) {
-    console.log('revise clicked',this.props.user);
+  handleUpdate(e) {
     e.preventDefault();
-    post('/ownerprofile/create', JSON.stringify(this.state));
+    let data = this.state;
+    data.id = this.props.user.id
+
+    post('/ownerprofile/update', JSON.stringify(this.state));
     this.props.returnHomePage('HomePage');
   }
 
   handleChange(e) {
     console.log(e.target.id);
-    var update = {};
+    let update = {};
     update[e.target.id] = e.target.value;
     this.setState(update);
   }
@@ -59,19 +59,19 @@ class OwnerProfileRevise extends React.Component {
   render() {
     return (
       <form onChange={this.handleChange}>
-        <h2> Owner Profile Revise </h2>
+        <h2> Owner Profile </h2>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">User Name</label>
-          <input id="name" type="text" className="form-control" placeholder="User Name"></input>
+          <h3>{this.props.user.name}</h3>
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <small className="form-text text-muted">We will never share your email with anyone else.</small>
-          <input id="email" type="text" className="form-control" placeholder="Enter email"></input>
+          <h3>{this.props.user.email}</h3>
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Phone</label>
-          <input id="phone" type="text" className="form-control" placeholder="Enter phone number"></input>
+          <input id="phone" type="text" className="form-control" placeholder={this.props.user.phone}></input>
         </div>
         <div className='container'>
           <div className="form-group form-inline">
@@ -80,10 +80,10 @@ class OwnerProfileRevise extends React.Component {
                 <label htmlFor="exampleInputEmail1" >Address:</label>
               </div>
               <div className="col.sm-6">
-                <input id="address" type="text" className="form-control" placeholder="Address"></input>
+                <input id="address" type="text" className="form-control" placeholder={this.props.user.address}></input>
               </div>
               <div className="col.sm-4">
-                <input id="zipcode" type="text" className="form-control" placeholder="Zip Code"></input>
+                <input id="zipcode" type="text" className="form-control" placeholder={this.props.user.zipcode}></input>
               </div>
             </div>
           </div>
@@ -99,15 +99,15 @@ class OwnerProfileRevise extends React.Component {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleTextarea">Feed:</label>
+          <label htmlFor="exampleTextarea">Food:</label>
           <textarea id="food" className="form-control" rows="1"></textarea>
         </div>
           <div className="form-group">
-          <label htmlFor="exampleTextarea">Medical::</label>
+          <label htmlFor="exampleTextarea">Medical:</label>
           <textarea id="medical" className="form-control" rows="1"></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleSelect2">Psesonality:</label>
+          <label htmlFor="exampleSelect2">Personality:</label>
           <select id="personality" className="form-control">
             <option>Grumpy</option>
             <option>Quiet</option>
@@ -130,7 +130,7 @@ class OwnerProfileRevise extends React.Component {
           </label>
           {/* <Dropzone onDrop={this.uploadFile.bind(this)}/> */}
         </div>
-        <button onClick={this.handleSubmit} type="submit" className="btn btn-primary">Submit</button>
+        <button onClick={this.handleUpdate} type="submit" className="btn btn-primary">Update Profile</button>
       </form>
     )
   }

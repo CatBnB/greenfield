@@ -90,6 +90,15 @@ app.post('/ownerprofile/create', function(req, res) {
   });
 });
 
+app.post('/ownerprofile/UPDATE', function(req, res) {
+  var options = req.body;
+  console.log('SERVER',options)
+  dbUtil.updateOwnerProfile(options)
+    .then((result) => {
+    res.status(201).send('update');
+  });
+});
+
 
 app.post('/sitter/accepttask', function(req, res) {
   var options = req.body;
@@ -102,6 +111,14 @@ app.post('/sitter/accepttask', function(req, res) {
 app.post('/task/cancel', function(req, res) {
   var options = req.body;
   dbUtil.cancelTask(options.id)
+    .then((result) => {
+    res.status(201).send('cancel');
+  })
+});
+
+app.post('/task/reject', function(req, res) {
+  var options = req.body;
+  dbUtil.rejectTask(options.id)
     .then((result) => {
     res.status(201).send('cancel');
   })

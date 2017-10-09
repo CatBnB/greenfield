@@ -2,6 +2,7 @@ import $ from 'jquery';
 
 // url should be directed at a :user style endpoint
 export const get = (endpoint) => {
+  console.log('get');
   return new Promise(function(resolve, reject) {
     $.ajax({
       type: 'GET',
@@ -15,7 +16,7 @@ export const get = (endpoint) => {
 };
 
 export const post = (endpoint, data) => {
-  console.log('post',data);
+  console.log('post');
   return new Promise(function(resolve, reject) {
     $.ajax({
       type: 'POST',

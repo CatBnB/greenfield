@@ -28,34 +28,60 @@ class SittersInfo extends React.Component {
   }
 
   render() {
-    //console.log('AUTH IN INFO', this.props.auth);
     return (
       <div>
         <div className="sitter-info">
           <div className="container">
             <div className="row">
               <div onClick={this.handleClick} className="col-lg-12">
-                <h3>Sitter Infomation</h3>
+                <h3 className="sitter-info-title">Sitter Infomation</h3>
                 <div className="row">
-                  <div className="col-lg-9">
-                    Name: {this.props.data.name}
+                  <div className="col-lg-8">
+                    <div className="row">
+                      <div className="col-lg-4">
+                        Name:
+                      </div> 
+                      <div className="col-lg-8">
+                        <h5 className='sitter-info-detail'>
+                          {this.props.data.name}
+                        </h5>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-lg-3">
-                    Rate: ${this.props.data.price}/Day
+                  <div className="col-lg-4">
+                    Rate: $
+                    {this.props.data.price}/Day
                   </div>
                 </div>
                 <div className='row'>
-                  <div className="col-lg-6">
-                    ZIP Code: {this.props.data.zipcode}
+                  <div className="col-lg-8">
+                    <div className='row'>
+                      <div className="col-lg-4">
+                        ZIP Code: 
+                      </div>
+                      <div className="col-lg-8">
+                        <h5 className='sitter-info-detail'>
+                          {this.props.data.zipcode}
+                        </h5>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-lg-3">
-                    V Boarding
-                  </div>
-                  <div className="col-lg-3">
-                    V Coming in
+                  <div className="col-lg-4 inline">
+                    <div>
+                       <img className="sitter-info-svg" src='checked.svg' height="18" width="18"></img>
+                        Boarding
+                    </div>
+                    <div>
+                       <img className="sitter-info-svg" src='checked.svg' height="18" width="18"></img>
+                        Coming in
+                    </div>
                   </div>
                 </div>
-                <div>description: {this.props.data.description}</div>
+                <div>description: 
+                  <div className='sitter-view-detail'>
+                    {this.props.data.description}
+                  </div>
+                </div>
                 <hr></hr>
                 <div className="sitter-info-picture">
                   <div className='row'>

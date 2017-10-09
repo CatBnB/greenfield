@@ -4,13 +4,19 @@ import {post} from '../ajaxHelper.js';
 class OwnerDashEntryOngoing extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+    	review: '',
+    	rating: 10
+    }
     this.handleCancel = this.handleCancel.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleReject = this.handleReject.bind(this);
+    this.handleSummit = this.handleSummit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleCancel(){
+  	console.log('cancel button')
     let data = {id: this.props.task.task_id}
     post('/task/cancel',JSON.stringify(data))
       .then(() => this.props.reRender());
@@ -27,6 +33,23 @@ class OwnerDashEntryOngoing extends React.Component {
     let data = {id: this.props.task.task_id}
     post('/task/reject',JSON.stringify(data))
       .then(() => this.props.reRender());
+  }
+
+  handleSummit(){
+  	console.log(this.props.task);
+    let data = this.state;
+    data.id = this.props.task.task_id;
+    data.owner_id = this.props.task.owner_id;
+    data.sitter_id = this.props.task.sitter_id;
+    console.log(data);
+    post('/task/summit',JSON.stringify(data))
+      .then(() => this.props.reRender());
+  }
+
+  handleChange(e) {
+    var update = {};
+    update[e.target.id] = e.target.value;
+    this.setState(update);
   }
 
   render() {
@@ -86,8 +109,10 @@ class OwnerDashEntryOngoing extends React.Component {
 			          	{
 			          		this.props.task.status === 'ready' ?
 			          		  	<div className="form-group">
-								          <label htmlFor="exampleTextarea">Commands:</label>
-								          <textarea id="other" className="form-control" rows="3"></textarea>
+			          		  		<div className='onwer-dash-entry-input'>
+									          <label htmlFor="exampleTextarea">Review:</label>
+									          <textarea id="review" className="form-control" rows="3" onChange={this.handleChange}></textarea>
+								          </div>
 							        	</div>
 			          		: <div></div>
 			          	}
@@ -96,19 +121,21 @@ class OwnerDashEntryOngoing extends React.Component {
 			          {
 			          	this.props.task.status === 'ready' ?
 					        <div className="form-group">
-					          <label htmlFor="exampleSelect1">Rates:</label>
-					          <select id="numOfCats" className="form-control">
-					            <option>10</option>
-					            <option>9</option>
-					            <option>8</option>
-					            <option>7</option>
-					            <option>6</option>
-					            <option>5</option>
-					            <option>4</option>
-					            <option>3</option>
-					            <option>2</option>
-					            <option>1</option>
-					          </select>
+					        	<div className="onwer-dash-entry-input">
+						          <label htmlFor="exampleSelect1">Rates:</label>
+						          <select id="rating" className="form-control " onChange={this.handleChange}>
+						            <option>10</option>
+						            <option>9</option>
+						            <option>8</option>
+						            <option>7</option>
+						            <option>6</option>
+						            <option>5</option>
+						            <option>4</option>
+						            <option>3</option>
+						            <option>2</option>
+						            <option>1</option>
+						          </select>
+					          </div>
 					        </div>
 					        : <div></div>
 			          }
@@ -124,7 +151,7 @@ class OwnerDashEntryOngoing extends React.Component {
 	            	<div className ="col-md-3 col-md-offset-3">
 		            	{
 			          		this.props.task.status === 'accepted' ?
-				          		<button type="button" className="btn btn-primary" onClick={this.handleConfirm}>Accept and Pay</button>
+				          		<button type="button" className="btn btn-primary btb" onClick={this.handleConfirm}>Accept and Pay</button>
 				          		: <div></div>
 		          		}
 	            	</div>
@@ -135,7 +162,7 @@ class OwnerDashEntryOngoing extends React.Component {
 		            		<button type="button" className="btn btn-danger" onClick={this.handleCancel}>Cancel</button>
 		            			: this.props.task.status === 'confirmed' ?
 		            			<button type="button" className="btn btn-danger" onClick={this.handleCancel}>Cancel & Refund</button>
-		            				: <button type="button" className="btn btn-primary">Summit</button>
+		            				: <button type="button" className="btn btn-primary" onClick={this.handleSummit}>Summit</button>
 		          		}
 	            	</div>
 	            </div>

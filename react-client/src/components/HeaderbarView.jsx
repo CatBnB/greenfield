@@ -43,9 +43,10 @@ class Headerbar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark ">
         <div className="container">
-          <div className="navbar-brand" onClick={this.props.pageState.bind(null,'HomePage')}>Cat BnB</div>
+        <img className='logo' src="noun_773861_cc.svg" height="60" width="90" onClick={this.props.pageState.bind(null,'HomePage')}></img>
+          <h3 className="navbar-brand" onClick={this.props.pageState.bind(null,'HomePage')}>CatBnB</h3>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">

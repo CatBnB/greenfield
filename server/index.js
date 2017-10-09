@@ -99,6 +99,14 @@ app.post('/task/confirm', upload.single('avatar'), function(req, res) {
   });
 });
 
+app.post('/task/summit', upload.single('avatar'), function(req, res) {
+  var options = req.body;
+  dbUtil.summitReview(options)
+    .then((result) => {
+    res.status(201).send('summit');
+  });
+});
+
 app.listen(3000, function() {
   console.log('Server started and listening on port 3000!!!!!');
 });

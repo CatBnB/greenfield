@@ -43,10 +43,11 @@ class SendRequest extends React.Component {
   }
 
   render() {
-    //console.log('AUTH IN SENDREQ', this.props.auth.status);
     return (
       <div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" >Contact sitter</button>
+        <div className='request-btn'>
+          <button type="button" className="btn btn-primary " data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" >Contact sitter</button>
+        </div>
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -89,12 +90,10 @@ class SendRequest extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div>
                   <div className="div-group">
-                    <label htmlFor="message-text" className="div-control-label">Request Detail Message:</label>
-                    <textarea className="div-control" id="ownerText" onChange={this.handleChange}></textarea>
+                        <label htmlFor="message-text" className="div-control-label">Request Detail:</label>
+                        <textarea className="div-control box" id="ownerText" rows="3" onChange={this.handleChange}></textarea>
                   </div>
-                </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

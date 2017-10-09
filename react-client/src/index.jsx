@@ -41,6 +41,7 @@ class App extends React.Component {
   }
 
   navClick(data) {
+    console.log('this is the data for nav bar:', data);
     if(data === 'SignUp') this.setState({pageState: 'SignUp'});
     if(data === 'HomePage') this.setState({pageState: 'HomePage'});
     if(data === 'Profile')

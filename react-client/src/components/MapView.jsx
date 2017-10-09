@@ -89,15 +89,14 @@ class Map extends React.Component {
   }
 
   render() {
-    //console.log('AUTH',this.props.auth);
     return (
-      <div className = 'row homepage-map-inbox'>
+      <div className = 'row homepage-map-inbox homepage'>
         <div className = 'col-sm-6 homepage-map-inbox'>
           <SitterList sitters={this.state.sitters} toggleView={this.toggleView}
                       changeView={this.changeView} selected={this.state.selected}
                       sitterClicked={this.state.sitterClicked} user={this.props.user} auth={this.props.auth}/>
         </div>
-        <div className = 'col-sm-6'>
+        <div className = 'col-sm-6 homepage-map-map-inbox'>
           <div id="map" ref={x => { this.mapContainer = x; }}></div>
         </div>
       </div>

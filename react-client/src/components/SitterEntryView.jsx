@@ -8,7 +8,6 @@ class SitterEntry extends React.Component {
   }
 
   handleClick() {
-    console.log(this.props.index);
     this.props.toggleView(this.props.index);
   }
 

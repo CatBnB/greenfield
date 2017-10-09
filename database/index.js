@@ -109,7 +109,7 @@ var rejectTask = function(id) {
 };
 
 var getOwnerDashboard = function(id) {
-  var q = 'SELECT sitterProfile.name as sitter_name, price, unit, status,startDate,endDate,tasksList.createdAt,tasksList.id as task_id, finalPrice FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
+  var q = 'SELECT sitterProfile.name as sitter_name, price, unit, status,startDate,endDate,tasksList.createdAt,tasksList.sitter_id,tasksList.owner_id,tasksList.id as task_id, finalPrice FROM tasksList JOIN sitterProfile ON sitterProfile.id = tasksList.sitter_id WHERE owner_id=' + id;
   return db.query(q);
 };
 
@@ -118,12 +118,13 @@ var getSitterDashboard = function(id) {
   return db.query(q);
 };
 
-var insertReview = function(options) {
-	var q = 'INSERT INTO reviews VALUES (null, ?,?,?,?,?)';
-	var values = [options.review,options.owner_id,options.sitter_id, options.id, option.rating];
-	return db.query(q,values);
+var summitReview = function(options) {
+  var qForReview = 'INSERT INTO reviews VALUES (null, ?,?,?,?,?)';
+  var qForTask = 'UPDATE tasksList SET status="finished" WHERE id=' + options.id;
+  var values = [options.review,options.owner_id,options.sitter_id, options.id, options.rating];
+  return db.query(qForReview,values)
+    .then(()=> db.query(qForTask));
 }
-
 
 //made for sitter part
 var getOwnerDetail = function(owner_id) {
@@ -132,6 +133,7 @@ var getOwnerDetail = function(owner_id) {
 };
 
 module.exports = {
+  summitReview,
 	rejectTask,
 	updateOwnerProfile,
   getSitters,

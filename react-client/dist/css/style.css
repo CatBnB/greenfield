@@ -8,6 +8,22 @@
   height: 25px;
 }
 
+.navbar {
+	background-color:#42ABBD ;
+}
+
+.logo {
+}
+
+.navbar-brand {
+	margin-top: 0.58%;
+	margin-right: 2%;
+	font-family: Monospace;
+	font-size: 24px;
+	font-weight: bold;
+	position:top:150px;left:0px;
+}
+
 .sitter-view-title {
   font-weight: bold;
 }
@@ -53,8 +69,13 @@
 }
 
 .homepage-map-inbox {
+	padding: 1px;
+	background-color: #ccc;
+}
+
+.homepage-map-map-inbox {
 	padding: 2px;
-	background-color: #ddd
+	background-color: #ccc;
 }
 
 .sitter-info-name {

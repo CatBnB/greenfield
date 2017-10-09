@@ -11,10 +11,10 @@ class OwnerProfile extends React.Component {
     this.state = {
       name: null,
       numOfCats: 1,
-      food: null,
-      medical: null,
+      food: '',
+      medical: '',
       personality: 'Grumpy',
-      other: null,
+      other: '',
       address: null,
       zipcode: null,
       phone: null,
@@ -24,9 +24,8 @@ class OwnerProfile extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-// [options.fb_userId,options.name,options.numOfCats,options.food,options.medical,
-              // options.personality,options.other,options.address,now,options.phone,
-              // options.email,options.zipcode];
+
+
   handleSubmit(e) {
     e.preventDefault();
     console.log('clicked');
@@ -34,18 +33,19 @@ class OwnerProfile extends React.Component {
 
     validateInputs(this.state)
       .then(data => {
-        post('/ownerprofile/create', JSON.stringify(data)).then(()=> {
-          get('/owner/' + this.props.auth.authResponse.userID).then(user => {
-            this.props.setUser(user)
-            this.props.returnHomePage('HomePage');
-          })
-        });
+        post('/ownerprofile/create', JSON.stringify(data))
+          .then(()=> {
+            get('/owner/' + this.props.auth.authResponse.userID)
+              .then(user => {
+                this.props.setUser(user);
+                this.props.returnHomePage('HomePage');
+              })
+            });
       })
       .catch(err => alert(err));
   }
 
   handleChange(e) {
-    console.log(this.state);
     var update = {};
     update[e.target.id] = e.target.value;
     this.setState(update);

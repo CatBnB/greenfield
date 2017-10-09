@@ -30,7 +30,6 @@ class OwnerDashEntryOngoing extends React.Component {
   }
 
   render() {
-      console.log('DASH',this.props.task);
     return (
     	<div>
 			  <div className='onwer-dash-entry'>

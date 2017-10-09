@@ -6,7 +6,7 @@ import Headerbar from './components/HeaderbarView.jsx';
 import Bottombar from './components/Bottombar.jsx';
 import OwnerProfile from './components/OwnerProfileView.jsx';
 import OwnerProfileRevise from './components/OwnerProfileViewRevise.jsx';
-import SitterProfile from './components/SitterProfileView.jsx';
+//import SitterProfile from './components/SitterProfileView.jsx';
 import OwnerDashView from './components/OwnerDashView.jsx'
 
 class App extends React.Component {

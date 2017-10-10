@@ -41,7 +41,7 @@ var getSitterDetail = function(id) {
 
 var insertOwnerProfile = function(options) {
   var now = new Date();
-  var q = 'INSERT INTO ownerProfile values (null,?,?,?,?,?,?,?,?,?,?,?,?,1)';
+  var q = 'INSERT INTO ownerProfile values (null,?,?,?,?,?,?,?,?,?,?,?,?)';
   var values = [options.fb_userId,options.name,options.numOfCats,options.food,options.medical,
                 options.personality,options.other,options.address,now,options.phone,
                 options.email,options.zipcode];

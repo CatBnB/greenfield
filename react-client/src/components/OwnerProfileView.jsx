@@ -28,8 +28,9 @@ class OwnerProfile extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.state['fb_userId'] = this.props.auth.authResponse.userID;
-
+    let data = this.state
+    data['fb_userId'] = this.props.auth.authResponse.userID;
+    console.log('submit',data);
     validateInputs(this.state)
       .then(data => {
         post('/ownerprofile/create', JSON.stringify(data))

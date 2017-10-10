@@ -19,7 +19,7 @@ var getSitters = function() {
 }
 
 var getSitterReviews = function(sitter_id) {
-    let q = 'SELECT * FROM Reviews where sitter_id=' + sitter_id;
+    let q = 'SELECT ownerProfile.name,review,rating FROM Reviews JOIN ownerProfile On Reviews.owner_id=ownerProfile.id WHERE sitter_id=' + sitter_id;
     return db.query(q).then(results => results[0]);
 };
 
@@ -41,7 +41,7 @@ var getSitterDetail = function(id) {
 
 var insertOwnerProfile = function(options) {
   var now = new Date();
-  var q = 'INSERT INTO ownerProfile values (null,?,?,?,?,?,?,?,?,?,?,?,?,1)';
+  var q = 'INSERT INTO ownerProfile values (null,?,?,?,?,?,?,?,?,?,?,?,?)';
   var values = [options.fb_userId,options.name,options.numOfCats,options.food,options.medical,
                 options.personality,options.other,options.address,now,options.phone,
                 options.email,options.zipcode];

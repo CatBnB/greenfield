@@ -66,13 +66,13 @@ class App extends React.Component {
             : this.state.pageState === 'SignUp' ?
                 (
                   <div>
-                    <OwnerProfile auth={this.state.auth} returnHomePage={this.navClick.bind(this)} setUser={this.setUser.bind(this)}/>
+                    <OwnerProfile auth={this.state.auth} returnHomePage={this.navClick} setUser={this.setUser}/>
                   </div>
                 )
               : this.state.pageState === 'Profile' ?
                 (
                   <div>
-                    <OwnerProfileRevise user={this.state.user} returnHomePage={this.navClick.bind(this)}/>
+                    <OwnerProfileRevise user={this.state.user} returnHomePage={this.navClick}/>
                   </div>
                 )
                 : this.state.pageState === 'Dashboard' ?
